@@ -55,20 +55,20 @@ spec:
     #     volumeMounts:
     #       - mountPath: /build/plugins
     #         name: headlamp-plugins
-    persistentVolumeClaim:
-      accessModes:
-        - ReadWriteOnce
-      enabled: true
-      size: 1Gi
-      volumeMode: Filesystem
-      storageClassName: longhorn
-    volumeMounts:
-      - mountPath: /build/plugins
-        name: headlamp-plugins
-    volumes:
-      - name: headlamp-plugins
-        persistentVolumeClaim:
-          claimName: headlamp
+    # persistentVolumeClaim:
+    #   accessModes:
+    #     - ReadWriteOnce
+    #   enabled: true
+    #   size: 1Gi
+    #   volumeMode: Filesystem
+    #   storageClassName: longhorn
+    # volumeMounts:
+    #   - mountPath: /build/plugins
+    #     name: headlamp-plugins
+    # volumes:
+    #   - name: headlamp-plugins
+    #     persistentVolumeClaim:
+    #       claimName: headlamp
 ---
 apiVersion: v1
 kind: ServiceAccount
