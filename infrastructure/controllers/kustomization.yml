@@ -5,4 +5,4 @@ resources:
   - ingress-nginx.yml
   - cert-manager.yml
   - front-rplb.yml
-  - system-upgrade-controller.yml
+  - metallb.yml
