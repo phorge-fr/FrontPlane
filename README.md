@@ -36,7 +36,7 @@ kubectl create secret generic sops-age \
 rm age.agekey
 ```
 
-5. Bootstrap flux
+4. Bootstrap flux
 
 ```bash
 flux bootstrap github --owner=phorge-fr --repository=FrontPlane --branch=main --path=cluster/frontplane --token-auth=true
