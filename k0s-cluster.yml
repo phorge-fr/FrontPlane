@@ -1,0 +1,81 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: frontplane
+  user: phorge-admin
+spec:
+  k0s:
+    version: 1.34.1+k0s.0
+    config:
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: k0s
+      spec:
+        api:
+          k0sApiPort: 9443
+          port: 6443
+          address: 10.0.0.7
+          sans:
+            - 10.0.0.7
+        network:
+          nodeLocalLoadBalancing:
+            enabled: true
+            type: EnvoyProxy
+          kubeProxy:
+            mode: ipvs
+            ipvs:
+              strictARP: true
+          podCIDR: 10.244.0.0/16
+          serviceCIDR: 10.96.0.0/12
+          controlPlaneLoadBalancing:
+            enabled: true
+            type: Keepalived
+            keepalived:
+              vrrpInstances:
+                - virtualIPs: ["10.0.0.7/24"]
+                  authPass: "@Ph0rg3@"
+          storage:
+          type: etcd
+        telemetry:
+          enabled: false
+  hosts:
+    - ssh:
+        address: 10.0.0.1
+        user: root
+        port: 22
+      role: controller+worker
+      noTaints: true
+      privateAddress: 10.0.0.1
+      privateInterface: end0
+    - ssh:
+        address: 10.0.0.2
+        user: root
+        port: 22
+      role: controller+worker
+      noTaints: true
+      privateAddress: 10.0.0.2
+      privateInterface: end0
+    - ssh:
+        address: 10.0.0.3
+        user: root
+        port: 22
+      role: controller+worker
+      noTaints: true
+      privateAddress: 10.0.0.3
+      privateInterface: end0
+    - ssh:
+        address: 10.0.0.4
+        user: root
+        port: 22
+      role: worker
+    - ssh:
+        address: 10.0.0.5
+        user: root
+        port: 22
+      role: worker
+    - ssh:
+        address: 10.0.0.6
+        user: root
+        port: 22
+      role: worker
