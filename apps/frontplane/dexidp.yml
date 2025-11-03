@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
     name: dexidp
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
     name: dexidp
@@ -13,7 +13,7 @@ spec:
     timeout: 1m0s
     url: https://charts.dexidp.io
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
     name: dex
