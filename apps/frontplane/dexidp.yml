@@ -2,6 +2,21 @@ apiVersion: v1
 kind: Namespace
 metadata:
     name: dexidp
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNUGRmWmNmZmdXT2RDd3Z3
+            aER3eGxSZVJ4UjBmZ2t0b3dKMmZGZGtLRG40Ck0rdkJhVzIyVERpK1dSVGp4QThZ
+            UEZ5R28rSStwTko1NWZaUGVBZ1ZTakkKLS0tIGpjUCtVWHVpUG1VQVo5UWIxUUpM
+            QjZjSlBQMDdPalJya0RGaFQ0MStnY0UKxRyyH6FU0mJ86Qb90wTrp9BsGV4eivGI
+            FD1LXSLmmvZbN9Q2sSecKE8OUi7i+YjV6u1/O3Cu2fxToEqeiVuPPQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T21:36:26Z"
+    mac: ENC[AES256_GCM,data:ISurmz6N5YFlkTFzhVD2zTgGUJC+fTAy4w1t4AaoHREMFJ47dnlRKoeiS/k60jerNSrZgq/tgeZEGav6yvmn791jXvRSm0xdZR0tn4Q47hZdveDMaQAAWq0PLgVFS5dL/arhKCFTpnWoSm6Cf+p67UztfD419t7ux2O3ms3KXDI=,iv:bcEtMObFUhH3lnUcw4OSAV1ZWwUtCWFXebDGLzz+bhU=,tag:Au+aE8XO2F+ALDHYcxwsWg==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
@@ -12,6 +27,21 @@ spec:
     interval: 1m0s
     timeout: 1m0s
     url: https://charts.dexidp.io
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNUGRmWmNmZmdXT2RDd3Z3
+            aER3eGxSZVJ4UjBmZ2t0b3dKMmZGZGtLRG40Ck0rdkJhVzIyVERpK1dSVGp4QThZ
+            UEZ5R28rSStwTko1NWZaUGVBZ1ZTakkKLS0tIGpjUCtVWHVpUG1VQVo5UWIxUUpM
+            QjZjSlBQMDdPalJya0RGaFQ0MStnY0UKxRyyH6FU0mJ86Qb90wTrp9BsGV4eivGI
+            FD1LXSLmmvZbN9Q2sSecKE8OUi7i+YjV6u1/O3Cu2fxToEqeiVuPPQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T21:36:26Z"
+    mac: ENC[AES256_GCM,data:ISurmz6N5YFlkTFzhVD2zTgGUJC+fTAy4w1t4AaoHREMFJ47dnlRKoeiS/k60jerNSrZgq/tgeZEGav6yvmn791jXvRSm0xdZR0tn4Q47hZdveDMaQAAWq0PLgVFS5dL/arhKCFTpnWoSm6Cf+p67UztfD419t7ux2O3ms3KXDI=,iv:bcEtMObFUhH3lnUcw4OSAV1ZWwUtCWFXebDGLzz+bhU=,tag:Au+aE8XO2F+ALDHYcxwsWg==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -42,32 +72,46 @@ spec:
                 - secretName: dexidp-tls
                   hosts:
                     - auth.phorge.fr
-        # config:
-        #     issuer: https://auth.phorge.fr/dex
-        #     storage:
-        #         type: memory
-        #     connectors:
-        #         - type: github
-        #           id: <PLACEHOLDER>
-        #           name: GitHub
-        #           config:
-        #             clientID: <PLACEHOLDER>
-        #             clientSecret: <PLACEHOLDER>
-        #             redirectURI: https://auth.phorge.fr/dex/callback
-        #             scopes:
-        #                 - groups
-        #                 - email
-        #             orgs:
-        #                 - name: phorge-fr
-        #                   teams:
-        #                     - admins
-        #             loadAllGroups: true
-        #             teamNameField: slug
-        #             useLoginAsID: false
+        config:
+            issuer: https://auth.phorge.fr/dex
+            storage:
+                type: memory
+            connectors:
+                - type: github
+                  id: ENC[AES256_GCM,data:q0k0wdKV,iv:b8Rb/Qftz8u3NNh5cOwzidHT0mxJBlxs/rVsRlri/dc=,tag:4cwTU8jcoiAkritHVdjr2Q==,type:str]
+                  name: GitHub
+                  config:
+                    clientID: ENC[AES256_GCM,data:M7k6tNU5CuSGdX9FKPv7sXpl7NM=,iv:q3ro9CuvSJq/R2zX0R5knxjbk6dJlpFbhQnEV+4ALiA=,tag:DvjhrW2Cy+X4c7cjehOnLg==,type:str]
+                    clientSecret: ENC[AES256_GCM,data:bfEz5Au0iK3pDvSnN+xUWvQbze0ycUrTiiaDHVwmzrYvBiLXHuvq7A==,iv:ty17ofdI66ktp08NNkauinsAZgc9TWiXMlwJ397sWNg=,tag:/Mc3UY1IGBQe9Crse22gWA==,type:str]
+                    redirectURI: https://auth.phorge.fr/dex/callback
+                    scopes:
+                        - groups
+                        - email
+                    orgs:
+                        - name: phorge-fr
+                          teams:
+                            - admins
+                    loadAllGroups: true
+                    teamNameField: slug
+                    useLoginAsID: false
         #     staticClients:
         #         - id: <PLACEHOLDER>
         #           name: Grafana
         #           secret: <PLACEHOLDER>
         #           redirectURIs:
         #             - https://monitoring.phorge.fr/login/generic_oauth
-
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNUGRmWmNmZmdXT2RDd3Z3
+            aER3eGxSZVJ4UjBmZ2t0b3dKMmZGZGtLRG40Ck0rdkJhVzIyVERpK1dSVGp4QThZ
+            UEZ5R28rSStwTko1NWZaUGVBZ1ZTakkKLS0tIGpjUCtVWHVpUG1VQVo5UWIxUUpM
+            QjZjSlBQMDdPalJya0RGaFQ0MStnY0UKxRyyH6FU0mJ86Qb90wTrp9BsGV4eivGI
+            FD1LXSLmmvZbN9Q2sSecKE8OUi7i+YjV6u1/O3Cu2fxToEqeiVuPPQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T21:36:26Z"
+    mac: ENC[AES256_GCM,data:ISurmz6N5YFlkTFzhVD2zTgGUJC+fTAy4w1t4AaoHREMFJ47dnlRKoeiS/k60jerNSrZgq/tgeZEGav6yvmn791jXvRSm0xdZR0tn4Q47hZdveDMaQAAWq0PLgVFS5dL/arhKCFTpnWoSm6Cf+p67UztfD419t7ux2O3ms3KXDI=,iv:bcEtMObFUhH3lnUcw4OSAV1ZWwUtCWFXebDGLzz+bhU=,tag:Au+aE8XO2F+ALDHYcxwsWg==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
