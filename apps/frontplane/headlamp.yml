@@ -1,90 +1,175 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: headlamp
+    name: headlamp
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArcXZqSnpuaGxEbEJVSE1Y
+            RFl3dSthVkNkczNFWUtDREVYMDVQNnJ3WkVJCklvZVhhRktJUWJXcGFsV0srNldQ
+            SkhkREFzOVN5TlRiTVovZFdaQjF6aVkKLS0tIFpudXhlSmZHUWt4dDVydFB5Q3lL
+            N0h5ZGUyZ1UwVVlDTnhQaVZuN1FjQzAKMA/rsPM6Wa48oTqzxNIp/NlzMUtxkSs1
+            JY5b0INMpTo6n4K8Nr2qVBM6jBBVg7eboZJJ+4bgSEiZZ/smUHW1ow==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T23:15:43Z"
+    mac: ENC[AES256_GCM,data:73zMG1nMd7QVwZg1hTHS5ymIzqST1wvLK21YeNNnkRnC5cgm0LN3L/bfW1cD3WVMKS0kWciRzGcpStbh3kJoLU7+pMbbsQ9A01zWA0SjjV0BC23J+Y7PUZiNMmqFBuO0GhgbAB2YMkfLNCO+es3qXtx/AT2mIh2gkNZ9T1QuSuk=,iv:gfxjR2oa39cb5oO4sBO43qTNTainVcLfOLJLo+ImzKE=,tag:f8ulx8KZZpGI0qO4J7cIiA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: headlamp
-  namespace: headlamp
+    name: headlamp
+    namespace: headlamp
 spec:
-  interval: 1m0s
-  timeout: 1m0s
-  url: https://kubernetes-sigs.github.io/headlamp/
+    interval: 1m0s
+    timeout: 1m0s
+    url: https://kubernetes-sigs.github.io/headlamp/
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArcXZqSnpuaGxEbEJVSE1Y
+            RFl3dSthVkNkczNFWUtDREVYMDVQNnJ3WkVJCklvZVhhRktJUWJXcGFsV0srNldQ
+            SkhkREFzOVN5TlRiTVovZFdaQjF6aVkKLS0tIFpudXhlSmZHUWt4dDVydFB5Q3lL
+            N0h5ZGUyZ1UwVVlDTnhQaVZuN1FjQzAKMA/rsPM6Wa48oTqzxNIp/NlzMUtxkSs1
+            JY5b0INMpTo6n4K8Nr2qVBM6jBBVg7eboZJJ+4bgSEiZZ/smUHW1ow==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T23:15:43Z"
+    mac: ENC[AES256_GCM,data:73zMG1nMd7QVwZg1hTHS5ymIzqST1wvLK21YeNNnkRnC5cgm0LN3L/bfW1cD3WVMKS0kWciRzGcpStbh3kJoLU7+pMbbsQ9A01zWA0SjjV0BC23J+Y7PUZiNMmqFBuO0GhgbAB2YMkfLNCO+es3qXtx/AT2mIh2gkNZ9T1QuSuk=,iv:gfxjR2oa39cb5oO4sBO43qTNTainVcLfOLJLo+ImzKE=,tag:f8ulx8KZZpGI0qO4J7cIiA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: headlamp
-  namespace: headlamp
+    name: headlamp
+    namespace: headlamp
 spec:
-  chart:
-    spec:
-      chart: headlamp
-      sourceRef:
-        kind: HelmRepository
-        name: headlamp
-      version: "*"
-  interval: 1m0s
-  values:
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-      hosts:
-        - host: headlamp.frontplane.phorge.fr
-          paths:
-            - path: /
-              type: ImplementationSpecific
-      tls:
-        - secretName: headlamp-tls
-          hosts:
-            - headlamp.frontplane.phorge.fr
-    config:
-      pluginsDir: /build/plugins
-    # initContainers:
-    #   - command:
-    #       - /bin/sh
-    #       - -c
-    #       - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
-    #     image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
-    #     imagePullPolicy: Always
-    #     name: headlamp-plugins
-    #     volumeMounts:
-    #       - mountPath: /build/plugins
-    #         name: headlamp-plugins
-    # persistentVolumeClaim:
-    #   accessModes:
-    #     - ReadWriteOnce
-    #   enabled: true
-    #   size: 1Gi
-    #   volumeMode: Filesystem
-    #   storageClassName: longhorn
-    # volumeMounts:
-    #   - mountPath: /build/plugins
-    #     name: headlamp-plugins
-    # volumes:
-    #   - name: headlamp-plugins
-    #     persistentVolumeClaim:
-    #       claimName: headlamp
+    chart:
+        spec:
+            chart: headlamp
+            sourceRef:
+                kind: HelmRepository
+                name: headlamp
+            version: '*'
+    interval: 1m0s
+    values:
+        ingress:
+            enabled: true
+            ingressClassName: nginx
+            annotations:
+                cert-manager.io/cluster-issuer: letsencrypt
+            hosts:
+                - host: headlamp.frontplane.phorge.fr
+                  paths:
+                    - path: /
+                      type: ImplementationSpecific
+            tls:
+                - secretName: headlamp-tls
+                  hosts:
+                    - headlamp.frontplane.phorge.fr
+        config:
+            inCluster: true
+            oidc:
+                secret:
+                    create: ENC[AES256_GCM,data:RofDpw==,iv:2Sa+hKVGM9WwumsX7n4b6KuzCBGFqVC3G+eGAKx45vY=,tag:A64wTVaJFkDptk6CylSCIw==,type:bool]
+                    name: ENC[AES256_GCM,data:a9ySTQ==,iv:JxxFmYTYknmiZh2Zq88a+ZHLuh8Y9hxHHM343eRTXQs=,tag:v7DwiFZ38uTH6w+h+CPppw==,type:str]
+                clientID: ENC[AES256_GCM,data:e2CAEConTk5d7A==,iv:bTVZdn70eSdlO9vyPsJpqulThHzLnfaZ4xoItsBNozk=,tag:mD6/ALHvVXW//adgofV4WQ==,type:str]
+                clientSecret: ENC[AES256_GCM,data:Pv5O42QraPC1SJ+v+262uqDJNd6eXi5ZU1T6,iv:C+3sD765UB/ufhD/G2suNJeoeKKStIT/Q3DoNPa2q7s=,tag:PI7PzQOLT2JJ5lwZGsobpw==,type:str]
+                issuerURL: https://auth.phorge.fr/dex
+                scopes: profile, email, groups
+                callbackURL: https://auth.phorge.fr/dex/callback
+                # pluginsDir: /build/plugins
+        # initContainers:
+        #   - command:
+        #       - /bin/sh
+        #       - -c
+        #       - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+        #     image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
+        #     imagePullPolicy: Always
+        #     name: headlamp-plugins
+        #     volumeMounts:
+        #       - mountPath: /build/plugins
+        #         name: headlamp-plugins
+        # persistentVolumeClaim:
+        #   accessModes:
+        #     - ReadWriteOnce
+        #   enabled: true
+        #   size: 1Gi
+        #   volumeMode: Filesystem
+        #   storageClassName: longhorn
+        # volumeMounts:
+        #   - mountPath: /build/plugins
+        #     name: headlamp-plugins
+        # volumes:
+        #   - name: headlamp-plugins
+        #     persistentVolumeClaim:
+        #       claimName: headlamp
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArcXZqSnpuaGxEbEJVSE1Y
+            RFl3dSthVkNkczNFWUtDREVYMDVQNnJ3WkVJCklvZVhhRktJUWJXcGFsV0srNldQ
+            SkhkREFzOVN5TlRiTVovZFdaQjF6aVkKLS0tIFpudXhlSmZHUWt4dDVydFB5Q3lL
+            N0h5ZGUyZ1UwVVlDTnhQaVZuN1FjQzAKMA/rsPM6Wa48oTqzxNIp/NlzMUtxkSs1
+            JY5b0INMpTo6n4K8Nr2qVBM6jBBVg7eboZJJ+4bgSEiZZ/smUHW1ow==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T23:15:43Z"
+    mac: ENC[AES256_GCM,data:73zMG1nMd7QVwZg1hTHS5ymIzqST1wvLK21YeNNnkRnC5cgm0LN3L/bfW1cD3WVMKS0kWciRzGcpStbh3kJoLU7+pMbbsQ9A01zWA0SjjV0BC23J+Y7PUZiNMmqFBuO0GhgbAB2YMkfLNCO+es3qXtx/AT2mIh2gkNZ9T1QuSuk=,iv:gfxjR2oa39cb5oO4sBO43qTNTainVcLfOLJLo+ImzKE=,tag:f8ulx8KZZpGI0qO4J7cIiA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: headlamp-admin
-  namespace: kube-system
+    name: headlamp-admin
+    namespace: kube-system
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArcXZqSnpuaGxEbEJVSE1Y
+            RFl3dSthVkNkczNFWUtDREVYMDVQNnJ3WkVJCklvZVhhRktJUWJXcGFsV0srNldQ
+            SkhkREFzOVN5TlRiTVovZFdaQjF6aVkKLS0tIFpudXhlSmZHUWt4dDVydFB5Q3lL
+            N0h5ZGUyZ1UwVVlDTnhQaVZuN1FjQzAKMA/rsPM6Wa48oTqzxNIp/NlzMUtxkSs1
+            JY5b0INMpTo6n4K8Nr2qVBM6jBBVg7eboZJJ+4bgSEiZZ/smUHW1ow==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T23:15:43Z"
+    mac: ENC[AES256_GCM,data:73zMG1nMd7QVwZg1hTHS5ymIzqST1wvLK21YeNNnkRnC5cgm0LN3L/bfW1cD3WVMKS0kWciRzGcpStbh3kJoLU7+pMbbsQ9A01zWA0SjjV0BC23J+Y7PUZiNMmqFBuO0GhgbAB2YMkfLNCO+es3qXtx/AT2mIh2gkNZ9T1QuSuk=,iv:gfxjR2oa39cb5oO4sBO43qTNTainVcLfOLJLo+ImzKE=,tag:f8ulx8KZZpGI0qO4J7cIiA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: headlamp-admin
+    name: headlamp-admin
 roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
 subjects:
-- kind: ServiceAccount
-  name: headlamp-admin
-  namespace: kube-system
+    - kind: ServiceAccount
+      name: headlamp-admin
+      namespace: kube-system
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArcXZqSnpuaGxEbEJVSE1Y
+            RFl3dSthVkNkczNFWUtDREVYMDVQNnJ3WkVJCklvZVhhRktJUWJXcGFsV0srNldQ
+            SkhkREFzOVN5TlRiTVovZFdaQjF6aVkKLS0tIFpudXhlSmZHUWt4dDVydFB5Q3lL
+            N0h5ZGUyZ1UwVVlDTnhQaVZuN1FjQzAKMA/rsPM6Wa48oTqzxNIp/NlzMUtxkSs1
+            JY5b0INMpTo6n4K8Nr2qVBM6jBBVg7eboZJJ+4bgSEiZZ/smUHW1ow==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-03T23:15:43Z"
+    mac: ENC[AES256_GCM,data:73zMG1nMd7QVwZg1hTHS5ymIzqST1wvLK21YeNNnkRnC5cgm0LN3L/bfW1cD3WVMKS0kWciRzGcpStbh3kJoLU7+pMbbsQ9A01zWA0SjjV0BC23J+Y7PUZiNMmqFBuO0GhgbAB2YMkfLNCO+es3qXtx/AT2mIh2gkNZ9T1QuSuk=,iv:gfxjR2oa39cb5oO4sBO43qTNTainVcLfOLJLo+ImzKE=,tag:f8ulx8KZZpGI0qO4J7cIiA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword)$
+    version: 3.11.0
