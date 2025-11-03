@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   # - headlamp.yml
   - dexidp.yml
-  # - kube-prometheus-stack.yml
+  - kube-prometheus-stack.yml
