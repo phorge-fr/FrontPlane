@@ -40,14 +40,14 @@ data:
       server ingress-server ingress-nginx-controller.ingress-nginx.svc.cluster.local:443 check
 
     frontend http-dispatcher
-      bind :80
+      bind :8080
       mode http
 
       tcp-request inspect-delay 5s
       default_backend http-nginx-ingress
 
     frontend sni-dispatcher
-      bind :443
+      bind :8443
       mode tcp
 
       tcp-request inspect-delay 5s
@@ -92,12 +92,12 @@ metadata:
   namespace: front-rplb
 spec:
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
       protocol: TCP
       name: http
-    - port: 443
-      targetPort: 443
+    - port: 8443
+      targetPort: 8443
       protocol: TCP
       name: https
   selector:
