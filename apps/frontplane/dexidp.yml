@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: dexidp
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+    name: dexidp
+    namespace: dexidp
+spec:
+    interval: 1m0s
+    timeout: 1m0s
+    url: https://charts.dexidp.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: dex
+    namespace: dexidp
+spec:
+    chart:
+        spec:
+            chart: dex
+            sourceRef:
+                kind: HelmRepository
+                name: dexidp
+            version: '*'
+    interval: 1m0s
+    values:
+        ingress:
+            enabled: true
+            className: nginx
+            annotations:
+                cert-manager.io/cluster-issuer: letsencrypt
+            hosts:
+                - host: auth.phorge.fr
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+            tls:
+                - secretName: dexidp-tls
+                  hosts:
+                    - auth.phorge.fr
+        # config:
+        #     issuer: https://auth.phorge.fr/dex
+        #     storage:
+        #         type: memory
+        #     connectors:
+        #         - type: github
+        #           id: <PLACEHOLDER>
+        #           name: GitHub
+        #           config:
+        #             clientID: <PLACEHOLDER>
+        #             clientSecret: <PLACEHOLDER>
+        #             redirectURI: https://auth.phorge.fr/dex/callback
+        #             scopes:
+        #                 - groups
+        #                 - email
+        #             orgs:
+        #                 - name: phorge-fr
+        #                   teams:
+        #                     - admins
+        #             loadAllGroups: true
+        #             teamNameField: slug
+        #             useLoginAsID: false
+        #     staticClients:
+        #         - id: <PLACEHOLDER>
+        #           name: Grafana
+        #           secret: <PLACEHOLDER>
+        #           redirectURIs:
+        #             - https://monitoring.phorge.fr/login/generic_oauth
+
