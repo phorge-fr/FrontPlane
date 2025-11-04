@@ -13,6 +13,10 @@ spec:
         name: k0s
       spec:
         api:
+          extraArgs:
+            oidc-issuer-url: https://auth.phorge.fr/dex
+            oidc-client-id: FrontPlane
+            oidc-username-claim: email
           k0sApiPort: 9443
           port: 6443
           address: 10.0.0.7
