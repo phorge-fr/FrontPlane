@@ -114,7 +114,7 @@ spec:
                         ca_file: /etc/prometheus/secrets/incus-metrics-credentials/ca.crt
                         cert_file: /etc/prometheus/secrets/incus-metrics-credentials/metrics.crt
                         key_file: /etc/prometheus/secrets/incus-metrics-credentials/metrics.key
-                        server_name: incus
+                        server_name: clever-lynx
 sops:
     age:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
