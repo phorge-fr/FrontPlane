@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: openfga
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlQnJrelB4NjhuTzl4YmVq
+            dnpGbCt5MTNCTC9BYzQ4d2M2TjArMlFNeVJnCmsvZVZZTVc3TUZBSFpVUndQTnVK
+            MlVxZEwzRkdLWUJJNjFmL2hDcWpxdDAKLS0tIDdhRXpqVHpRSnpvVnpoeHlDZnkx
+            Skp2aUFPbk9ES05GOXlWTHplZlpzZjQKumETt0LrLUL7TJppQoO5aocdweTpAcGJ
+            vCTc5+jJ5sjuyom2RxOVOiyXsj/TKVqqHwSSIT8DjfY2+GrLChxjNw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-05T20:56:09Z"
+    mac: ENC[AES256_GCM,data:jK9FK0IMlMNuuiuNoy5OnM+zcKpr31noYzpYwq2/KuK4zVHi19/00GBX+7Y+Cnh1KkDTTZDwBS8HoQ2zmV3SrpQztGgr0WItpu27ZbFcVv8mPqvZA8/Xy7ULMlEGqxANOeVmdxvaWrb+PtXTtrXkPFXw4myXd9NMf9c2JbwHOjI=,iv:LEmE/hL6Of3lE99LIUueubP+BgDokkAcY+AsMBoBviI=,tag:Yz0hYGa6ZADsQJWUJMf8VQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
+    version: 3.11.0
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: openfga
+    namespace: openfga
+spec:
+    interval: 1m0s
+    timeout: 1m0s
+    url: https://openfga.github.io/helm-charts
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlQnJrelB4NjhuTzl4YmVq
+            dnpGbCt5MTNCTC9BYzQ4d2M2TjArMlFNeVJnCmsvZVZZTVc3TUZBSFpVUndQTnVK
+            MlVxZEwzRkdLWUJJNjFmL2hDcWpxdDAKLS0tIDdhRXpqVHpRSnpvVnpoeHlDZnkx
+            Skp2aUFPbk9ES05GOXlWTHplZlpzZjQKumETt0LrLUL7TJppQoO5aocdweTpAcGJ
+            vCTc5+jJ5sjuyom2RxOVOiyXsj/TKVqqHwSSIT8DjfY2+GrLChxjNw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-05T20:56:09Z"
+    mac: ENC[AES256_GCM,data:jK9FK0IMlMNuuiuNoy5OnM+zcKpr31noYzpYwq2/KuK4zVHi19/00GBX+7Y+Cnh1KkDTTZDwBS8HoQ2zmV3SrpQztGgr0WItpu27ZbFcVv8mPqvZA8/Xy7ULMlEGqxANOeVmdxvaWrb+PtXTtrXkPFXw4myXd9NMf9c2JbwHOjI=,iv:LEmE/hL6Of3lE99LIUueubP+BgDokkAcY+AsMBoBviI=,tag:Yz0hYGa6ZADsQJWUJMf8VQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
+    version: 3.11.0
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: openfga
+    namespace: openfga
+spec:
+    chart:
+        spec:
+            chart: openfga
+            sourceRef:
+                kind: HelmRepository
+                name: openfga
+            version: '*'
+    interval: 1m0s
+    values:
+        replicaCount: 1
+        datastore:
+            engine: postgres
+            uri: ENC[AES256_GCM,data:9u39jGTT+ltY5p5SCmuRnjjXnjyondkQZfxmI1QC+99/i2VVcIjcGl9uC4ZyVPo4sBCV+tW1GFTTwxB45YkKser0CLWhnR8OHOyfvF03EFakfTmMNo7fAeoqUjtvzpmeA7r5Aqq1XWVOTecx8oT0X7Bd,iv:6wFu1aXLkKwHdyj7Z8QMrDlgFQ6uBLY5V/by5QtpKqE=,tag:/koPldlGglWw+wzgy5VCFw==,type:str]
+        postgresql:
+            enabled: true
+            auth:
+                postgresPassword: ENC[AES256_GCM,data:Hlm+Vh7NTGw5MqmGHY03mCXxug==,iv:phbEOiuBDRYg1yXSFVkYCfeqDXINtUNnG1LBFDybvKA=,tag:nE+RTojWlIM40QgKq3P7EQ==,type:str]
+                database: postgres
+            primary:
+                persistence:
+                    enabled: true
+                    size: 10Gi
+        ingress:
+            enabled: true
+            className: nginx
+            annotations:
+                cert-manager.io/cluster-issuer: letsencrypt
+            hosts:
+                - host: openfga.phorge.fr
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+            tls:
+                - hosts:
+                    - openfga.phorge.fr
+                  secretName: openfga-tls
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlQnJrelB4NjhuTzl4YmVq
+            dnpGbCt5MTNCTC9BYzQ4d2M2TjArMlFNeVJnCmsvZVZZTVc3TUZBSFpVUndQTnVK
+            MlVxZEwzRkdLWUJJNjFmL2hDcWpxdDAKLS0tIDdhRXpqVHpRSnpvVnpoeHlDZnkx
+            Skp2aUFPbk9ES05GOXlWTHplZlpzZjQKumETt0LrLUL7TJppQoO5aocdweTpAcGJ
+            vCTc5+jJ5sjuyom2RxOVOiyXsj/TKVqqHwSSIT8DjfY2+GrLChxjNw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-05T20:56:09Z"
+    mac: ENC[AES256_GCM,data:jK9FK0IMlMNuuiuNoy5OnM+zcKpr31noYzpYwq2/KuK4zVHi19/00GBX+7Y+Cnh1KkDTTZDwBS8HoQ2zmV3SrpQztGgr0WItpu27ZbFcVv8mPqvZA8/Xy7ULMlEGqxANOeVmdxvaWrb+PtXTtrXkPFXw4myXd9NMf9c2JbwHOjI=,iv:LEmE/hL6Of3lE99LIUueubP+BgDokkAcY+AsMBoBviI=,tag:Yz0hYGa6ZADsQJWUJMf8VQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
+    version: 3.11.0
