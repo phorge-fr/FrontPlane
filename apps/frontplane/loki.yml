@@ -29,7 +29,7 @@ spec:
     interval: 1m0s
     values:
       deploymentMode: SingleBinary
-      loki:
+      # loki:
         # podSecurityContext:
         #   fsGroup: 0
         #   runAsGroup: 0
@@ -44,17 +44,17 @@ spec:
         #   http_server_write_timeout: 3m
         # commonConfig:
         #   replication_factor: 1
-        storage:
-          type: 'filesystem'
-        schemaConfig:
-          configs:
-          - from: "2024-01-01"
-            store: tsdb
-            index:
-              prefix: loki_index_
-              period: 24h
-            object_store: filesystem # we're storing on filesystem so there's no real persistence here.
-            schema: v13
+        # storage:
+        #   type: 'filesystem'
+        # schemaConfig:
+        #   configs:
+        #   - from: "2024-01-01"
+        #     store: tsdb
+        #     index:
+        #       prefix: loki_index_
+        #       period: 24h
+        #     object_store: filesystem # we're storing on filesystem so there's no real persistence here.
+        #     schema: v13
 
       # gateway:
       #   ingress:
