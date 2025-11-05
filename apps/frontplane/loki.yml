@@ -28,91 +28,10 @@ spec:
             version: '*'
     interval: 1m0s
     values:
-      deploymentMode: SingleBinary
       loki:
-        # podSecurityContext:
-        #   fsGroup: 0
-        #   runAsGroup: 0
-        #   runAsNonRoot: false
-        #   runAsUser: 0
-        # query_scheduler:
-        #   max_outstanding_requests_per_tenant: 4096
-        # querier:
-        #   max_concurrent: 2048
-        # server:
-        #   http_server_read_timeout: 3m
-        #   http_server_write_timeout: 3m
-        # commonConfig:
-        #   replication_factor: 1
+        commonConfig:
+          replication_factor: 1
         storage:
           type: 'filesystem'
-        # schemaConfig:
-        #   configs:
-        #   - from: "2024-01-01"
-        #     store: tsdb
-        #     index:
-        #       prefix: loki_index_
-        #       period: 24h
-        #     object_store: filesystem # we're storing on filesystem so there's no real persistence here.
-        #     schema: v13
-
-      # gateway:
-      #   ingress:
-      #     enabled: true
-      #     annotations:
-      #       cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
-      #     ingressClassName: "nginx-local"
-      #     hosts:
-      #       - host: loki-10.10.10.81.nip.io
-      #         paths:
-      #           - path: /
-      #             pathType: Prefix
-      #     tls:
-      #       - secretName: loki-gateway-tls
-      #         hosts:
-      #           - loki-10.10.10.81.nip.io
-
       singleBinary:
         replicas: 1
-        persistence:
-          size: 10Gi
-
-
-      # Zero out replica counts of other deployment modes
-      backend:
-        replicas: 0
-      read:
-        replicas: 0
-      write:
-        replicas: 0
-      ingester:
-        replicas: 0
-      querier:
-        replicas: 0
-      queryFrontend:
-        replicas: 0
-      queryScheduler:
-        replicas: 0
-      distributor:
-        replicas: 0
-      compactor:
-        replicas: 0
-      indexGateway:
-        replicas: 0
-      bloomCompactor:
-        replicas: 0
-      bloomGateway:
-        replicas: 0
-      lokiCanary:
-        enabled: false
-      monitoring:
-        dashboards:
-          enabled: false
-        rules:
-          enabled: false
-        serviceMonitor:
-          enabled: false
-        selfMonitoring:
-          enabled: false
-      test:
-        enabled: false
