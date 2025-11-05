@@ -59,13 +59,13 @@ data:
       bind :8443
       mode tcp
 
-      # Attente de la détection du SNI
       tcp-request inspect-delay 5s
-      tcp-request content accept if { req_ssl_hello_type 1 }
+      tcp-request content accept if { req.ssl_hello_type 1 }
 
-      # Routage basé sur le SNI (nom du certificat demandé)
-      use_backend incus-cluster if { req_ssl_sni -i iaas.phorge.fr }
+      use_backend incus-cluster if { req.ssl_sni -i iaas.phorge.fr }
+
       default_backend https-nginx-ingress
+
 ---
 apiVersion: apps/v1
 kind: Deployment
