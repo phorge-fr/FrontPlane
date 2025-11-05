@@ -7,14 +7,14 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDVmxyeUp3cGhnenBhdDA0
-            S2JRWW00S3JhOEhoSGRacTVXUEJFc0lkb2hvCmxPUFo2OGJ3d1dhUlFkTE5FZWdl
-            dUUyUzZUaXFhbW9mVG9OaUhiOHdpRHMKLS0tIFRUa0tmOVc3cWpBbExuZzNUVnFT
-            UEVLUFNScCtIbEhyZlFVYmdvV2dYNTgKe9VQ64Kqe9KQDHlK1coq4lfNSo1Nz4Dk
-            jizZXhFaIuP0+bM+BZ7TXCyPWkP3SEsyNhWdQxpubuFKKrQtzOuZjA==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFalo5U2dsb2l6d3dSS1k1
+            Ui9YMW9RcUJtZ3VvWU0zbFIwN0NtcTBXSVZRClZVQ2FtU3pTN1cxNkdhUklCajBi
+            RVl3QjRKRXd3Qkw2dHA4d2dlQ3VRZFUKLS0tICt6RTUrNXZ0ZFlEa2R3dTVCTXNv
+            RzBUQXc3NWVkRnEwcHZrdTRJeHBkR1EKjw8jl7zv8HN5/rjXCAuCM+OM6jeo6XC1
+            9VZkSAGUU9hIZOvKhQOtf00GoLDaD+7VeM/jJjF0XH3/WHwaD4yDYw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-11-05T23:11:48Z"
-    mac: ENC[AES256_GCM,data:dpbaHQn4t5PdX3v7l8ooYShyszwlB2VVxGs3qB1RF/b5R5mYzuII4eTqcFJazaqKB7Q4xqFjy6immxhJAPDcVtWvvCrm2sOjOpAGxCAzsCgB9UiU9JUmUQYYkrdqCxvpBXZlAvU8CTxEjNivuyMsOYYhkeKlBMY+lLkwDw5fXKE=,iv:BDuT8WTeJu32+RCsg7/b/VHTuu6oRc/PeoIb+DeGnCg=,tag:8l1Z/E78CqLdvuELQvKIyg==,type:str]
+    lastmodified: "2025-11-05T23:32:51Z"
+    mac: ENC[AES256_GCM,data:PibI2SsIkQoBEhvMslgSYvQpl/d4wEzJnYUXirUqw77qP3K16BSqZZD5ykuBdp+qM3sG8gMi4hdajLEjIwOO+f5oYUFq7zBVmsfkYpn4gbMBsKQWkMQDmONak7WVjtqP0w2f0QfCUiieLTSNwF6P0ObjnKVgbPXJNTnv77SzZtM=,iv:gHae+QRSEkah7wCb/1HxgqSilwGjHYJ59OMj+ZBV2T8=,tag:No/znH2zNTs0FL6JNHNMhg==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
     version: 3.11.0
 ---
@@ -32,14 +32,14 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDVmxyeUp3cGhnenBhdDA0
-            S2JRWW00S3JhOEhoSGRacTVXUEJFc0lkb2hvCmxPUFo2OGJ3d1dhUlFkTE5FZWdl
-            dUUyUzZUaXFhbW9mVG9OaUhiOHdpRHMKLS0tIFRUa0tmOVc3cWpBbExuZzNUVnFT
-            UEVLUFNScCtIbEhyZlFVYmdvV2dYNTgKe9VQ64Kqe9KQDHlK1coq4lfNSo1Nz4Dk
-            jizZXhFaIuP0+bM+BZ7TXCyPWkP3SEsyNhWdQxpubuFKKrQtzOuZjA==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFalo5U2dsb2l6d3dSS1k1
+            Ui9YMW9RcUJtZ3VvWU0zbFIwN0NtcTBXSVZRClZVQ2FtU3pTN1cxNkdhUklCajBi
+            RVl3QjRKRXd3Qkw2dHA4d2dlQ3VRZFUKLS0tICt6RTUrNXZ0ZFlEa2R3dTVCTXNv
+            RzBUQXc3NWVkRnEwcHZrdTRJeHBkR1EKjw8jl7zv8HN5/rjXCAuCM+OM6jeo6XC1
+            9VZkSAGUU9hIZOvKhQOtf00GoLDaD+7VeM/jJjF0XH3/WHwaD4yDYw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-11-05T23:11:48Z"
-    mac: ENC[AES256_GCM,data:dpbaHQn4t5PdX3v7l8ooYShyszwlB2VVxGs3qB1RF/b5R5mYzuII4eTqcFJazaqKB7Q4xqFjy6immxhJAPDcVtWvvCrm2sOjOpAGxCAzsCgB9UiU9JUmUQYYkrdqCxvpBXZlAvU8CTxEjNivuyMsOYYhkeKlBMY+lLkwDw5fXKE=,iv:BDuT8WTeJu32+RCsg7/b/VHTuu6oRc/PeoIb+DeGnCg=,tag:8l1Z/E78CqLdvuELQvKIyg==,type:str]
+    lastmodified: "2025-11-05T23:32:51Z"
+    mac: ENC[AES256_GCM,data:PibI2SsIkQoBEhvMslgSYvQpl/d4wEzJnYUXirUqw77qP3K16BSqZZD5ykuBdp+qM3sG8gMi4hdajLEjIwOO+f5oYUFq7zBVmsfkYpn4gbMBsKQWkMQDmONak7WVjtqP0w2f0QfCUiieLTSNwF6P0ObjnKVgbPXJNTnv77SzZtM=,iv:gHae+QRSEkah7wCb/1HxgqSilwGjHYJ59OMj+ZBV2T8=,tag:No/znH2zNTs0FL6JNHNMhg==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
     version: 3.11.0
 ---
@@ -86,11 +86,11 @@ spec:
                 type: memory
             connectors:
                 - type: github
-                  id: ENC[AES256_GCM,data:Tnk10q6W,iv:AqV01Z7kkJl19UhWMxgKNDAJ+yy5WGZzHW4PLpvSrXI=,tag:WxFZ+TmKmsmZwiaFXiicPg==,type:str]
+                  id: ENC[AES256_GCM,data:kLO3KJN3,iv:eIPassPp3xQtgseeHbZQ8uLyKgLSgbAA+q2YKEKroUA=,tag:KCf6d7zl4bfw/BUX7M10Rw==,type:str]
                   name: GitHub
                   config:
-                    clientID: ENC[AES256_GCM,data:vI+PUxNOir5/hz25E0F2Bx+sVRw=,iv:BiGSn4wzDFwwH0TnRztdU5l1648q3hA3lSCFDNeVcFU=,tag:FYzaNjMtt5Ht6scjpPExlw==,type:str]
-                    clientSecret: ENC[AES256_GCM,data:8627XFseF2a7K4Lc52uo+bNzetaXKTZPHI/BLvw1egptXcMcq02bLA==,iv:UdBIaBWlLPx39J4WnoQZyjnVzKYc+PTszl9eQ+MlauQ=,tag:f+sjEANwZPh/NRnACvHR7w==,type:str]
+                    clientID: ENC[AES256_GCM,data:o2wB+RJiGoiifpDKmaoWzYFYoMA=,iv:Oy8bZifG5OE2hmNRBy5l6+FV1LZizJ3QFlF+Lxa7neg=,tag:xB1uC0XkCXrSN/L/FtyslQ==,type:str]
+                    clientSecret: ENC[AES256_GCM,data:NZ67FVKg9gdJvcNLV7Jf9xenm143iGBr2J07fC4fbBwRORsVCNZpeg==,iv:vGg6uNZ6EeKlxx+7qLqA0zXlcb3H3UFv/mMKNKD7M2c=,tag:LHmwOO+zUC5mRt21YGGkZg==,type:str]
                     redirectURI: https://auth.phorge.fr/callback
                     scopes:
                         - groups
@@ -108,12 +108,12 @@ spec:
                 #   secret: <PLACEHOLDER>
                 #   redirectURIs:
                 #     - https://monitoring.phorge.fr/login/generic_oauth
-                - id: ENC[AES256_GCM,data:CktGrJf0S4s7hA==,iv:bYg7RgbEJ7q2xUoFbfMu5rhvuyB8G8+N62XSpTiG8Fo=,tag:JxEOhY0oluXOwEh5672KgA==,type:str]
+                - id: ENC[AES256_GCM,data:e2H+w6+aue70CQ==,iv:8sWXnOYw2Ey4pUzZ2sfkbLi2g5ma5cWHmFYjb7p4w5M=,tag:pMOKqv/9NGiHoKLFvsaelg==,type:str]
                   name: FrontPlane
-                  secret: ENC[AES256_GCM,data:GaKJkMAwhPzdml3dwGkUIFXIJVVPC7d56ue5,iv:wsQ3OylcgkaXgFYSeDOoL8ZBxysamAYbUt5+IDs1Bjk=,tag:lcTo12lTlqCJ9B3nsBPF3w==,type:str]
+                  secret: ENC[AES256_GCM,data:h/znJwDYXZ0GO7qLxwhnlYazSJ+MKeT4GxHY,iv:pQA2OSX8hAM8wR2wYihjBwYdZyfx3HL7p5+rVA8/XBI=,tag:je40/Bb3kJW1BA3sy2o+hg==,type:str]
                   redirectURIs:
                     - https://headlamp.frontplane.phorge.fr/oidc-callback
-                - id: ENC[AES256_GCM,data:WwXnCzE=,iv:bbuKHLeUawmUxJJOF1LOzHppo8YjBF0QnxsW1eGUodo=,tag:bh7RXHdZgZhDFJgsMQpWIg==,type:str]
+                - id: ENC[AES256_GCM,data:6bg2EG4=,iv:APtprGJKbpuSpoWhKFs1QDg1rUEUgvYtrPbGxOn7Ohc=,tag:+Vz56rCkbIdsJRw1K+fM1w==,type:str]
                   name: Incus
                   public: true
                   redirectURIs:
@@ -124,13 +124,13 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDVmxyeUp3cGhnenBhdDA0
-            S2JRWW00S3JhOEhoSGRacTVXUEJFc0lkb2hvCmxPUFo2OGJ3d1dhUlFkTE5FZWdl
-            dUUyUzZUaXFhbW9mVG9OaUhiOHdpRHMKLS0tIFRUa0tmOVc3cWpBbExuZzNUVnFT
-            UEVLUFNScCtIbEhyZlFVYmdvV2dYNTgKe9VQ64Kqe9KQDHlK1coq4lfNSo1Nz4Dk
-            jizZXhFaIuP0+bM+BZ7TXCyPWkP3SEsyNhWdQxpubuFKKrQtzOuZjA==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFalo5U2dsb2l6d3dSS1k1
+            Ui9YMW9RcUJtZ3VvWU0zbFIwN0NtcTBXSVZRClZVQ2FtU3pTN1cxNkdhUklCajBi
+            RVl3QjRKRXd3Qkw2dHA4d2dlQ3VRZFUKLS0tICt6RTUrNXZ0ZFlEa2R3dTVCTXNv
+            RzBUQXc3NWVkRnEwcHZrdTRJeHBkR1EKjw8jl7zv8HN5/rjXCAuCM+OM6jeo6XC1
+            9VZkSAGUU9hIZOvKhQOtf00GoLDaD+7VeM/jJjF0XH3/WHwaD4yDYw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-11-05T23:11:48Z"
-    mac: ENC[AES256_GCM,data:dpbaHQn4t5PdX3v7l8ooYShyszwlB2VVxGs3qB1RF/b5R5mYzuII4eTqcFJazaqKB7Q4xqFjy6immxhJAPDcVtWvvCrm2sOjOpAGxCAzsCgB9UiU9JUmUQYYkrdqCxvpBXZlAvU8CTxEjNivuyMsOYYhkeKlBMY+lLkwDw5fXKE=,iv:BDuT8WTeJu32+RCsg7/b/VHTuu6oRc/PeoIb+DeGnCg=,tag:8l1Z/E78CqLdvuELQvKIyg==,type:str]
+    lastmodified: "2025-11-05T23:32:51Z"
+    mac: ENC[AES256_GCM,data:PibI2SsIkQoBEhvMslgSYvQpl/d4wEzJnYUXirUqw77qP3K16BSqZZD5ykuBdp+qM3sG8gMi4hdajLEjIwOO+f5oYUFq7zBVmsfkYpn4gbMBsKQWkMQDmONak7WVjtqP0w2f0QfCUiieLTSNwF6P0ObjnKVgbPXJNTnv77SzZtM=,iv:gHae+QRSEkah7wCb/1HxgqSilwGjHYJ59OMj+ZBV2T8=,tag:No/znH2zNTs0FL6JNHNMhg==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword)$
     version: 3.11.0
