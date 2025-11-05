@@ -5,3 +5,4 @@ resources:
   - dexidp.yml
   - kube-prometheus-stack.yml
   - loki.yml
+  - openfga.yml
