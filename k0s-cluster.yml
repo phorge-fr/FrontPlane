@@ -14,7 +14,7 @@ spec:
       spec:
         api:
           extraArgs:
-            oidc-issuer-url: https://auth.phorge.fr/dex
+            oidc-issuer-url: https://auth.phorge.fr/
             oidc-client-id: FrontPlane
             oidc-username-claim: email
           k0sApiPort: 9443
