@@ -69,7 +69,6 @@ spec:
     requests:
       storage: 10Gi
   volumeMode: Filesystem
-
 ---
 apiVersion: apps/v1
 kind: Deployment
