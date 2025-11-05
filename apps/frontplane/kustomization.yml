@@ -4,3 +4,4 @@ resources:
   - headlamp.yml
   - dexidp.yml
   - kube-prometheus-stack.yml
+  - loki.yml
