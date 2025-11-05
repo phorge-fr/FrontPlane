@@ -57,6 +57,20 @@ data:
         retention_deletes_enabled: true
         retention_period: 24h
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: loki-pvc
+  namespace: loki
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -91,7 +105,8 @@ spec:
             runAsUser: 0
       volumes:
         - name: loki-data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: loki-pvc
         - name: loki-config
           configMap:
             name: loki-config
