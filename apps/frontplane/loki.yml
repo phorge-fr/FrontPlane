@@ -79,40 +79,40 @@ spec:
 
 
       # Zero out replica counts of other deployment modes
-      # backend:
-      #   replicas: 0
-      # read:
-      #   replicas: 0
-      # write:
-      #   replicas: 0
-      # ingester:
-      #   replicas: 0
-      # querier:
-      #   replicas: 0
-      # queryFrontend:
-      #   replicas: 0
-      # queryScheduler:
-      #   replicas: 0
-      # distributor:
-      #   replicas: 0
-      # compactor:
-      #   replicas: 0
-      # indexGateway:
-      #   replicas: 0
-      # bloomCompactor:
-      #   replicas: 0
-      # bloomGateway:
-      #   replicas: 0
-      # lokiCanary:
-      #   enabled: false
-      # monitoring:
-      #   dashboards:
-      #     enabled: false
-      #   rules:
-      #     enabled: false
-      #   serviceMonitor:
-      #     enabled: false
-      #   selfMonitoring:
-      #     enabled: false
-      # test:
-      #   enabled: false
+      backend:
+        replicas: 0
+      read:
+        replicas: 0
+      write:
+        replicas: 0
+      ingester:
+        replicas: 0
+      querier:
+        replicas: 0
+      queryFrontend:
+        replicas: 0
+      queryScheduler:
+        replicas: 0
+      distributor:
+        replicas: 0
+      compactor:
+        replicas: 0
+      indexGateway:
+        replicas: 0
+      bloomCompactor:
+        replicas: 0
+      bloomGateway:
+        replicas: 0
+      lokiCanary:
+        enabled: false
+      monitoring:
+        dashboards:
+          enabled: false
+        rules:
+          enabled: false
+        serviceMonitor:
+          enabled: false
+        selfMonitoring:
+          enabled: false
+      test:
+        enabled: false
