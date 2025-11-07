@@ -19,7 +19,6 @@ spec:
             oidc-username-claim: email
           k0sApiPort: 9443
           port: 6443
-          address: 10.0.0.7
           sans:
             - 10.0.0.7
         network:
@@ -35,13 +34,16 @@ spec:
               vrrpInstances:
                 - virtualIPs: ["10.0.0.7/24"]
                   authPass: "@Ph0rg3@"
+                  interface: end0
+          nodeLocalLoadBalancing:
+            enabled: true
+            type: EnvoyProxy
         storage:
           type: etcd
           etcd:
             extraArgs:
               listen-peer-urls: https://0.0.0.0:2380
               listen-client-urls: https://0.0.0.0:2379
-
         telemetry:
           enabled: false
   hosts:

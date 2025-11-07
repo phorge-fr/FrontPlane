@@ -28,8 +28,11 @@ k0sctl kubeconfig -c k0s-cluster.yml
 3. Install Cilium
 
 ```bash
-cilium install --helm-set ipam.operator.clusterPoolIPv4PodCIDRList="10.244.0.0/16" --helm-set envoy.enabled=false
-cilium config set enable-bpf-masquerade true
+cilium install \
+  --helm-set ipam.operator.clusterPoolIPv4PodCIDRList="10.244.0.0/16" \
+  --helm-set envoy.enabled=false \
+  --helm-set l2announcements.enabled=true \
+  --helm-set bpf.masquerade=true
 ```
 
 4. Create sops key for the cluster
