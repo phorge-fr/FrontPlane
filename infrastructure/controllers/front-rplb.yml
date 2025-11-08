@@ -53,6 +53,10 @@ data:
     frontend http-dispatcher
       bind :8080
       mode http
+    
+      acl host_iaas hdr(host) -i iaas.phorge.fr
+      http-request redirect scheme https code 301 if host_iaas
+    
       default_backend http-nginx-ingress
 
     frontend sni-dispatcher
