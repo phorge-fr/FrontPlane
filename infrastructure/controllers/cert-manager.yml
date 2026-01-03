@@ -30,4 +30,7 @@ spec:
         namespace: cert-manager
       interval: 12h
   values:
+    global:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
     installCRDs: true

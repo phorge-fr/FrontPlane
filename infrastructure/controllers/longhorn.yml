@@ -23,9 +23,27 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: "*"
+      version: "1.10.1"
       sourceRef:
         kind: HelmRepository
         name: longhorn
         namespace: longhorn-system
       interval: 12h
+  values:
+    defaultSettings:
+      systemManagedComponentsNodeSelector: node-role.kubernetes.io/worker:true
+    csi:
+      attacherReplicaCount: 1
+      provisionerReplicaCount: 1
+      resizerReplicaCount: 1
+      snapshotterReplicaCount: 1
+    longhornUI:
+      replicas: 1
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+    longhornManager:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+    longhornDriver:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
