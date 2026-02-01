@@ -1,0 +1,233 @@
+apiVersion: opentofu.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: iaas
+spec:
+  configuration: |
+    terraform {
+      required_providers {
+        incus = {
+          source = "lxc/incus"
+          version = "1.0.2"
+        }
+      }
+      backend "kubernetes" {
+        secret_suffix     = "providerconfig-default"
+        namespace         = "crossplane-system"
+        in_cluster_config = true
+      }
+    }
+
+    provider "incus" {
+      accept_remote_certificate    = true
+      default_remote               = "iaas"
+      config_dir                  = "/root/.config/incus"
+      remote {
+        name    = "iaas"
+        address = "https://iaas.phorge.fr:443"
+      }
+    }
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: vm.iaas.phorge.fr
+  labels:
+    provider: incus
+spec:
+  compositeTypeRef:
+    apiVersion: iaas.phorge.fr/v1alpha1
+    kind: VM
+  mode: Pipeline
+  pipeline:
+    - step: create-workspace
+      functionRef:
+        name: crossplane-contrib-function-patch-and-transform
+      input:
+        apiVersion: pt.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          - name: vm
+            base:
+              apiVersion: opentofu.upbound.io/v1beta1
+              kind: Workspace
+              spec:
+                forProvider:
+                  source: Inline
+                  module: |
+                    resource "incus_instance" "instance" {
+                      name  = var.name
+                      image = var.image
+                      description = var.description
+                      project     = var.project
+                      type        = var.type
+
+                      config = {
+                        "boot.autostart" = var.autostart
+                        "limits.cpu"     = var.cpu
+                        "limits.memory"  = var.memory
+                        }
+
+                      device {
+                        name = "root"
+                        type = "disk"
+
+                        properties = {
+                          path   = "/"
+                          pool   = var.pool
+                          size   = var.disk_size
+                        }
+                      }
+                    }
+
+                    variable "name" {
+                      description = "The name of the instance"
+                      type        = string
+                    }
+
+                    variable "image" {
+                      description = "The image to use for the instance"
+                      type        = string
+                    }
+
+                    variable "description" {
+                      description = "The description of the instance"
+                      type        = string
+                    }
+
+                    variable "project" {
+                      description = "The project to use for the instance"
+                      type        = string
+                    }
+
+                    variable "type" {
+                      description = "The type of the instance"
+                      type        = string
+                    }
+
+                    variable "autostart" {
+                      description = "Whether to autostart the instance"
+                      type        = bool
+                    }
+
+                    variable "cpu" {
+                      description = "The number of CPUs to allocate to the instance"
+                      type        = number
+                    }
+
+                    variable "memory" {
+                      description = "The amount of memory to allocate to the instance"
+                      type        = string
+                    }
+
+                    variable "pool" {
+                      description = "The storage pool to use for the root device"
+                      type        = string
+                    }
+
+                    variable "disk_size" {
+                      description = "The size of the disk to allocate to the instance"
+                      type        = string
+                    }
+                  vars:
+                    - key: name
+                    - key: image
+                    - key: description
+                    - key: project
+                    - key: type
+                    - key: autostart
+                    - key: cpu
+                    - key: memory
+                    - key: pool
+                    - key: disk_size
+                providerConfigRef:
+                  name: iaas
+            patches:
+              - fromFieldPath: spec.name
+                toFieldPath: spec.forProvider.vars[0].value
+              - fromFieldPath: spec.image
+                toFieldPath: spec.forProvider.vars[1].value
+              - fromFieldPath: spec.description
+                toFieldPath: spec.forProvider.vars[2].value
+              - fromFieldPath: spec.project
+                toFieldPath: spec.forProvider.vars[3].value
+              - fromFieldPath: spec.type
+                toFieldPath: spec.forProvider.vars[4].value
+              - fromFieldPath: spec.autostart
+                toFieldPath: spec.forProvider.vars[5].value
+                transforms:
+                  - type: convert
+                    convert:
+                      toType: string
+              - fromFieldPath: spec.cpu
+                toFieldPath: spec.forProvider.vars[6].value
+                transforms:
+                  - type: convert
+                    convert:
+                      toType: string
+              - fromFieldPath: spec.memory
+                toFieldPath: spec.forProvider.vars[7].value
+              - fromFieldPath: spec.pool
+                toFieldPath: spec.forProvider.vars[8].value
+              - fromFieldPath: spec.disk_size
+                toFieldPath: spec.forProvider.vars[9].value
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: vms.iaas.phorge.fr
+spec:
+  scope: Cluster
+  group: iaas.phorge.fr
+  names:
+    kind: VM
+    plural: vms
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              image:
+                type: string
+              project:
+                type: string
+              type:
+                type: string
+              autostart:
+                type: boolean
+              cpu:
+                type: integer
+              memory:
+                type: string
+              pool:
+                type: string
+              disk_size:
+                type: string
+            required:
+            - name
+            - image
+            - project
+            - type
+            - autostart
+            - cpu
+            - memory
+            - pool
+            - disk_size
+          status:
+            description: A Status represents the observed state
+            properties:
+              share:
+                description: Freeform field containing status information
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+            type: object
