@@ -4,5 +4,4 @@ resources:
   - longhorn.yml
   - ingress-nginx.yml
   - cert-manager.yml
-  # - front-rplb.yml
-  # - crossplane.yml
+  - crossplane.yml
