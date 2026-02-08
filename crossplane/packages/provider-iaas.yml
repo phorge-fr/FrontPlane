@@ -5,21 +5,21 @@ metadata:
     namespace: crossplane-system
 type: Opaque
 stringData:
-    client.crt: ENC[AES256_GCM,data:UNBE+yNk86I3P0qrQuFxTkmQy2cEEnZ+yZbcgr5ucd5dFtMeeHCDpnMCsVi3tubTCJVZoQOjEJly6HQ8q8hicbUn92e+mySL3hkSEp4vj08D+ey/7P/H6nYJopVWtaV+j1vAepHg6kVIn9qzl9zhGXe+kpdPHwTqoxhk1+WX7UvkA5pvTedbdjIARBbiedCXdyTJin5OSeSoKFGCvS/MnYgOsB+v7ag9aWvhI9OOAPL5axo85Funh51NFQn/Mve6G/fNMmPT+G9A57ISxalXOwWo/IOvuK3diHFQ3u+/+LYy8/FXpC0QFMCxCitfNaT2Axb/mley/B9Y8h4YtrsGOdkm5OCWkL/U1HLriVudJhaD6n/D8t0jMLke1aYR8ryfNUUBidVBwbZnm9NCDAaI3wWdy0/NcB8B+sBIrUDUdpbF3SfRW1lIGgi60gngr77OMsactL6BIQxF96kdau8IcL9ppvrnhxieL8nlkZLJ4e+uyd94nonYMOF4HHU26JGbCyVVvZJj0MESMAxz9yi1q21tLn9BQWQX3KOBAWZJvukgxWOEtgwjiltDOmRmSJIFVY9Asv9ju0GdGDKg1htj3yiCdbUyV+OcpjGNzJhYF9KLQ8sRbyQmO3g4GKGpZGNYy2iCgAjU3SYQ7SiIkIyLdjRO8IjWJmlSzgG1BBaCkMkbUytQ+rYibdSoVCDegcohoIotNw7CpZtS9xpq3mIxg7P7GJ3v3Renc8YamuJZLL3iPkdvf/GKg1p/b6Lb9xAr5O1IzjDguRhYXtuU++wD1vPu1n/TGbfHWaBM17gGTnROZgMrwm/bmLFwabeDU26Z6Gko59J05lpCq3UlQV7RduKs/VYveeHYFoYF9KBh/j2vOkDvSbSEeYPDd//BhTzYgVuowt1E9RE=,iv:0W16YDvEo+7Hza79PPZZ/EGh/QFfWFRBC1LuPk+XJts=,tag:sGTuSRCWXw3qN32rO4rtjQ==,type:str]
-    client.key: ENC[AES256_GCM,data:t6sKPjoOQm6C9qfpnJC675+5TboGFvM6Mm7jWmnRdrSthDzHtHJAkUZt78m51U2lWe3Pe9jHg6SLlVLzBTvquOk+wMG3U7Nk8By3BCFT771eJclVf5o6/hhye9M4PdZhVEYKKOV9nuTWg198BQjygIM2s70e6JDFLWJfG2c6ym2xTtu18Qh6mwSwbaS6m2iQnsQnR/PPhetRWxA81wAn8134tDSGoRcjFGsOQnOfBlSv3IVGcdpl+jVPu/gtE4CA1IL41cwvgnBwQpGxlLPGb1ndj5sh0BkiB+LuXuYGpF66hg76UPujyO7WHkKdxGZST00U5Z0YM5M2HOYarKOrBvqCzVfEcE/MDzLzfiZjeq1DkiMdeP9rdoT5038wiHRhl+SE+Atw5IHSiW4da+zPmgU6,iv:YtGRABo/644So8Pj6KGJJDm9jcAxoXV3xmclRpapmFQ=,tag:OFSf5eZ2wfaDLcSwLR9OlQ==,type:str]
+    client.crt: ENC[AES256_GCM,data:TsZoDZZa0+mZs+RX5ZekzELnoj4qA8cLhtw/m4bibSiuZdlsSqtII0PMXgVnLkJGY23fNh4rAd58D7aWY2K2Y1t+49cChWtZvMAwHlhd9pQAcuBlhPlTzEKpkl3zBBK1U/CpzsYthwXocuB8DkrYNflbBbMisxx+4jDQQi+IX7At6XFVnt3dBRK713IKLZ79m+pDuic+HWqfdhNkbwKV0II9oaXQZIjHpZ77y53HDLBr/SuU29fTUdx0qFfmWB8KM+VwsPPYIgT1H5NfUn3i+KydL0H7f+ntSTfdhDOy57N45+OEPnSVNWBF5CtiBpzfyn5LISpvllaH82IHc/2KIquWaJ3zASotAnYGnw9yivm1XEUWmTp8iexC5HtWJX1Ha8w0WbO1jAxixI9K2ovnsunYb9na4DdUPZwGYpCtUSYLdfe4ByV8P4/NSgy7b1gWhOMZkQS6CDqiOvZb4PYakRwAijnNq9j4IjD0LhBLt1tktyxTKocr20dzna1X2vnlHTye+7Pv/8oC1BMapX5fK0F/MjBNqgyLUJaGW0B+4tlKkro4zcHqDECNNHqo63DeO3n30mfw9OmZf9KcG/NVjE1K2x4Jq/qCwqywfmixDj3imHsPqRzYGdk/WyB/qvrbDhXAIESYjfbmNwEmWYzDL53QFtYUe0sq7X5UKAQ0xRukkiw+J0piXxm6F8w3AMK0iG6c8oYPv1x0XE3poz9AcBuYeZvO2YinwIz3EDAC/X5IX01LHO/YgZmuR1HxYd94LLH07fUWce0lMNi59cYz7tewbvD7sF8MjBZqaUsYHXYo3vMNUCPA6cblH3H37zydN14UCieGDFj2JmQST50C+Ghde4FM9LEd65mMSzYJ1ebAxg5KOuQdCI9lp6ly0X8E25PLyV2pNkw=,iv:kl/ncaAFfOKk0vBoa8TYFJ83aBusUVh1K7j8QFcimBo=,tag:xbDhuTBz2KNAkEhr0JEmNg==,type:str]
+    client.key: ENC[AES256_GCM,data:rRTP8is1fmxD5cpi5Zb5PKClL23YaTOCVii6AfS7SOhl1QdhzbpLJSLc0sx1+xKeTlFD/ejT0+qA9QJgvGQdQ8OvdarWKNVIKUVZwaW0aRN0jjds92yw9zXOtncDf3C4Ee5fWKMYZFwF0lCnXMuxHj7t2zO3r+F7QvAHIU2uYeHVWer4LnD7TieW3bsku7eDi5L4Kt3+4Si8/QuIaoJv5zpR/IxDnJEimg0U3V2s5dnbROL6kvJPQ4rfZjkLnZAebZXDKhVCVbWYkEu/kzis6wMkCgnURE332lHqAULMYiFthukUGCh2JTHBMRm1SNf8Vnl1JQx4ULy1L1gQJDqNJ4aC4gJjsQsRtv8E2PKznZEHnP/Vazgv4dRKlIowOrHC0ng0ujE4I3CYhR3/5vOckLok,iv:q+mMNwSggDp/MUYYzuetbDT+KPrLMybf8FrNnmwERHc=,tag:tuSePVFEs892obgf23OoDw==,type:str]
 sops:
     age:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0SUdrakp0MHhVMUNzQ0M2
-            c0Z5ekVJdDBkelhJVWVOTy9qNDdGdDJRS1RNClFWMGgvbUNKcEt3RTVDelVxZUR6
-            ZThvNWFVZ084V3RVWXZvTzRxVUpoMFkKLS0tIFd3Ym1Mc1drOEE4U0RVS0kwUWh4
-            NTZCYUQ2OTAzS1Z0anNlSnhkNHl6bzgKcDWAQ0fTgNJuiKs+X+3MbJoYXxF5WPWv
-            0d5+jZopFaof6Xr7ZIXvTNi/fRoUbPWDfObxoMYN78yWh8k+OXEgQQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
+            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
+            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
+            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
+            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-01T18:35:06Z"
-    mac: ENC[AES256_GCM,data:wVYfwT6pdiA/cj+coc/9dJDG9WVR0bk7L7r4Z6fvTqtyZwZ7rKWNw5ZBWX1lTEoAUAiJ7RJvolC0W5bdDBmIWxxBsnKnbtcpXQYM75S7b+McfuxgyYDPnROph+FwLvh1YFUTXECxvXl6wXK+cekJZqvqchpat4UNflvzkdpKl30=,iv:7+Z4JzgCV7gkluDXGrgAXbGohCMufl3Atp+Zskq4AHA=,tag:nmUD+3vj70Nl/t1ui+kCWw==,type:str]
+    lastmodified: "2026-02-08T16:13:12Z"
+    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0
 ---
@@ -36,14 +36,14 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0SUdrakp0MHhVMUNzQ0M2
-            c0Z5ekVJdDBkelhJVWVOTy9qNDdGdDJRS1RNClFWMGgvbUNKcEt3RTVDelVxZUR6
-            ZThvNWFVZ084V3RVWXZvTzRxVUpoMFkKLS0tIFd3Ym1Mc1drOEE4U0RVS0kwUWh4
-            NTZCYUQ2OTAzS1Z0anNlSnhkNHl6bzgKcDWAQ0fTgNJuiKs+X+3MbJoYXxF5WPWv
-            0d5+jZopFaof6Xr7ZIXvTNi/fRoUbPWDfObxoMYN78yWh8k+OXEgQQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
+            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
+            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
+            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
+            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-01T18:35:06Z"
-    mac: ENC[AES256_GCM,data:wVYfwT6pdiA/cj+coc/9dJDG9WVR0bk7L7r4Z6fvTqtyZwZ7rKWNw5ZBWX1lTEoAUAiJ7RJvolC0W5bdDBmIWxxBsnKnbtcpXQYM75S7b+McfuxgyYDPnROph+FwLvh1YFUTXECxvXl6wXK+cekJZqvqchpat4UNflvzkdpKl30=,iv:7+Z4JzgCV7gkluDXGrgAXbGohCMufl3Atp+Zskq4AHA=,tag:nmUD+3vj70Nl/t1ui+kCWw==,type:str]
+    lastmodified: "2026-02-08T16:13:12Z"
+    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0
 ---
@@ -61,36 +61,31 @@ spec:
                     volumes:
                         - name: incus-config
                           secret:
-                            secretName: ENC[AES256_GCM,data:bTTYJzLjqKqyQT7zjylZlK7+ug==,iv:/H+sai3JBM6wwPwhrnL+jvJUZA+6aFOFavDoSRfz7LE=,tag:RD5UH9cVFRYrsOYta8zx4Q==,type:str]
+                            secretName: ENC[AES256_GCM,data:BhIxxk8U5eA3v7vwXcgxtd4lYQ==,iv:csEgD9IdOUbWlry3XLjorrksGO2nhM0YfbsIhG0XGXk=,tag:BPvaNTrmWE+TP7bZVfJyZg==,type:str]
                     containers:
                         - name: package-runtime
-                          # securityContext:
-                          #   runAsUser: 0
-                          #   runAsNonRoot: false
-                          # command:
-                          #   - sh
-                          #   - -c
-                          #   - |
-                          #     apk add --no-cache \
-                          #       --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
-                          #       incus-client &&
-                          #     crossplane-opentofu-provider
+                          command:
+                            - sh
+                            - -c
+                            - |
+                              mkdir -p /tofu/config/incus \
+                              && cp -L /tmp/credentials/* /tofu/config/incus/ \
+                              && crossplane-opentofu-provider
                           volumeMounts:
                             - name: incus-config
-                              mountPath: /root/.config/incus
-                              readOnly: false
+                              mountPath: /tmp/credentials
 sops:
     age:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0SUdrakp0MHhVMUNzQ0M2
-            c0Z5ekVJdDBkelhJVWVOTy9qNDdGdDJRS1RNClFWMGgvbUNKcEt3RTVDelVxZUR6
-            ZThvNWFVZ084V3RVWXZvTzRxVUpoMFkKLS0tIFd3Ym1Mc1drOEE4U0RVS0kwUWh4
-            NTZCYUQ2OTAzS1Z0anNlSnhkNHl6bzgKcDWAQ0fTgNJuiKs+X+3MbJoYXxF5WPWv
-            0d5+jZopFaof6Xr7ZIXvTNi/fRoUbPWDfObxoMYN78yWh8k+OXEgQQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
+            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
+            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
+            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
+            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-01T18:35:06Z"
-    mac: ENC[AES256_GCM,data:wVYfwT6pdiA/cj+coc/9dJDG9WVR0bk7L7r4Z6fvTqtyZwZ7rKWNw5ZBWX1lTEoAUAiJ7RJvolC0W5bdDBmIWxxBsnKnbtcpXQYM75S7b+McfuxgyYDPnROph+FwLvh1YFUTXECxvXl6wXK+cekJZqvqchpat4UNflvzkdpKl30=,iv:7+Z4JzgCV7gkluDXGrgAXbGohCMufl3Atp+Zskq4AHA=,tag:nmUD+3vj70Nl/t1ui+kCWw==,type:str]
+    lastmodified: "2026-02-08T16:13:12Z"
+    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0

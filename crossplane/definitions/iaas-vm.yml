@@ -19,160 +19,17 @@ spec:
     }
 
     provider "incus" {
-      accept_remote_certificate    = true
-      default_remote               = "iaas"
-      config_dir                  = "/root/.config/incus"
+      accept_remote_certificate = true
+      default_remote            = "iaas"
+      config_dir                = "/tofu/config/incus"
       remote {
         name    = "iaas"
         address = "https://iaas.phorge.fr:443"
       }
     }
+
 ---
-apiVersion: apiextensions.crossplane.io/v1
-kind: Composition
-metadata:
-  name: vm.iaas.phorge.fr
-  labels:
-    provider: incus
-spec:
-  compositeTypeRef:
-    apiVersion: iaas.phorge.fr/v1alpha1
-    kind: VM
-  mode: Pipeline
-  pipeline:
-    - step: create-workspace
-      functionRef:
-        name: crossplane-contrib-function-patch-and-transform
-      input:
-        apiVersion: pt.crossplane.io/v1beta1
-        kind: Resources
-        resources:
-          - name: vm
-            base:
-              apiVersion: opentofu.upbound.io/v1beta1
-              kind: Workspace
-              spec:
-                forProvider:
-                  source: Inline
-                  module: |
-                    resource "incus_instance" "instance" {
-                      name  = var.name
-                      image = var.image
-                      description = var.description
-                      project     = var.project
-                      type        = var.type
-
-                      config = {
-                        "boot.autostart" = var.autostart
-                        "limits.cpu"     = var.cpu
-                        "limits.memory"  = var.memory
-                        }
-
-                      device {
-                        name = "root"
-                        type = "disk"
-
-                        properties = {
-                          path   = "/"
-                          pool   = var.pool
-                          size   = var.disk_size
-                        }
-                      }
-                    }
-
-                    variable "name" {
-                      description = "The name of the instance"
-                      type        = string
-                    }
-
-                    variable "image" {
-                      description = "The image to use for the instance"
-                      type        = string
-                    }
-
-                    variable "description" {
-                      description = "The description of the instance"
-                      type        = string
-                    }
-
-                    variable "project" {
-                      description = "The project to use for the instance"
-                      type        = string
-                    }
-
-                    variable "type" {
-                      description = "The type of the instance"
-                      type        = string
-                    }
-
-                    variable "autostart" {
-                      description = "Whether to autostart the instance"
-                      type        = bool
-                    }
-
-                    variable "cpu" {
-                      description = "The number of CPUs to allocate to the instance"
-                      type        = number
-                    }
-
-                    variable "memory" {
-                      description = "The amount of memory to allocate to the instance"
-                      type        = string
-                    }
-
-                    variable "pool" {
-                      description = "The storage pool to use for the root device"
-                      type        = string
-                    }
-
-                    variable "disk_size" {
-                      description = "The size of the disk to allocate to the instance"
-                      type        = string
-                    }
-                  vars:
-                    - key: name
-                    - key: image
-                    - key: description
-                    - key: project
-                    - key: type
-                    - key: autostart
-                    - key: cpu
-                    - key: memory
-                    - key: pool
-                    - key: disk_size
-                providerConfigRef:
-                  name: iaas
-            patches:
-              - fromFieldPath: spec.name
-                toFieldPath: spec.forProvider.vars[0].value
-              - fromFieldPath: spec.image
-                toFieldPath: spec.forProvider.vars[1].value
-              - fromFieldPath: spec.description
-                toFieldPath: spec.forProvider.vars[2].value
-              - fromFieldPath: spec.project
-                toFieldPath: spec.forProvider.vars[3].value
-              - fromFieldPath: spec.type
-                toFieldPath: spec.forProvider.vars[4].value
-              - fromFieldPath: spec.autostart
-                toFieldPath: spec.forProvider.vars[5].value
-                transforms:
-                  - type: convert
-                    convert:
-                      toType: string
-              - fromFieldPath: spec.cpu
-                toFieldPath: spec.forProvider.vars[6].value
-                transforms:
-                  - type: convert
-                    convert:
-                      toType: string
-              - fromFieldPath: spec.memory
-                toFieldPath: spec.forProvider.vars[7].value
-              - fromFieldPath: spec.pool
-                toFieldPath: spec.forProvider.vars[8].value
-              - fromFieldPath: spec.disk_size
-                toFieldPath: spec.forProvider.vars[9].value
----
-apiVersion: apiextensions.crossplane.io/v1
+apiVersion: apiextensions.crossplane.io/v2
 kind: CompositeResourceDefinition
 metadata:
   name: vms.iaas.phorge.fr
@@ -195,39 +52,140 @@ spec:
             properties:
               name:
                 type: string
+              project:
+                type: string
+              remote:
+                type: string
               description:
                 type: string
               image:
                 type: string
-              project:
-                type: string
               type:
                 type: string
-              autostart:
+              profiles:
+                type: array
+                items:
+                  type: string
+              ephemeral:
                 type: boolean
-              cpu:
-                type: integer
-              memory:
+              running:
+                type: boolean
+              target:
                 type: string
-              pool:
-                type: string
-              disk_size:
-                type: string
-            required:
-            - name
-            - image
-            - project
-            - type
-            - autostart
-            - cpu
-            - memory
-            - pool
-            - disk_size
-          status:
-            description: A Status represents the observed state
-            properties:
-              share:
-                description: Freeform field containing status information
+              config:
                 type: object
-                x-kubernetes-preserve-unknown-fields: true
+                additionalProperties:
+                  type: string
+              device:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    properties:
+                      type: object
+                      additionalProperties:
+                        type: string
+              wait_for:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    delay:
+                      type: string
+                    nic:
+                      type: string
+                  required:
+                    - type
+            required:
+              - name
+              - image
+              - project
+          status:
             type: object
+            properties:
+              conditions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type: { type: string }
+                    status: { type: string }
+                    reason: { type: string }
+                    message: { type: string }
+                    lastTransitionTime: { type: string }
+
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: vm.iaas.phorge.fr
+  labels:
+    provider: incus
+spec:
+  compositeTypeRef:
+    apiVersion: iaas.phorge.fr/v1alpha1
+    kind: VM
+  mode: Pipeline
+  pipeline:
+  - step: compose-a-resource-with-python
+    functionRef:
+      name: crossplane-contrib-function-python
+    input:
+      apiVersion: python.fn.crossplane.io/v1beta1
+      kind: Script
+      script: |
+        import json
+        from crossplane.function.proto.v1 import run_function_pb2 as fnv1
+        from google.protobuf.json_format import MessageToDict
+
+        def terraformize(k: str, v):
+            result = ""
+            for device in v:
+                result += f"{k} {{\n"
+                for key, value in device.items():
+                    result += f"   {key} = {json.dumps(value)}\n"
+                result += "  }\n"
+            
+            return result
+
+        def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
+            
+            specs = MessageToDict(req.observed.composite.resource["spec"])
+
+            devices = [{"name": device["name"], "type": device["type"], "properties": device["properties"]} for device in specs.get("device", [])]
+            wait_for = [{"type": item["type"], **{key: item[key] for key in item if key != "type"}} for item in specs.get("wait_for", [])]
+
+            rsp.desired.resources["vm"].resource.update({
+                "apiVersion": "opentofu.upbound.io/v1beta1",
+                "kind": "Workspace",
+                "spec": {
+                    "providerConfigRef": {"name": "iaas"},
+                    "forProvider": {
+                        "source": "Inline",
+                        "module":f"""resource "incus_instance" "this" {{
+          name        = "{specs['name']}"
+          project     = "{specs['project']}"
+          remote      = "{specs.get('remote', 'iaas')}"
+          target      = {specs.get("target", "null")}
+          description = "{specs.get('description', '')}"
+          image       = "{specs['image']}"
+          type        = "{specs.get('type', 'container')}"
+          ephemeral   = {str(specs.get('ephemeral', False)).lower()}
+          running     = {str(specs.get('running', True)).lower()}
+          config   = {json.dumps(specs.get("config", {}))}
+          profiles = {json.dumps(specs.get("profiles", []))}
+
+          {terraformize("device", devices)}
+          {terraformize("wait_for", wait_for)}
+        }}
+        """,
+                    },
+                },
+            })
+            
