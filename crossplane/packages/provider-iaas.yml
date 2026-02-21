@@ -5,21 +5,21 @@ metadata:
     namespace: crossplane-system
 type: Opaque
 stringData:
-    client.crt: ENC[AES256_GCM,data:TsZoDZZa0+mZs+RX5ZekzELnoj4qA8cLhtw/m4bibSiuZdlsSqtII0PMXgVnLkJGY23fNh4rAd58D7aWY2K2Y1t+49cChWtZvMAwHlhd9pQAcuBlhPlTzEKpkl3zBBK1U/CpzsYthwXocuB8DkrYNflbBbMisxx+4jDQQi+IX7At6XFVnt3dBRK713IKLZ79m+pDuic+HWqfdhNkbwKV0II9oaXQZIjHpZ77y53HDLBr/SuU29fTUdx0qFfmWB8KM+VwsPPYIgT1H5NfUn3i+KydL0H7f+ntSTfdhDOy57N45+OEPnSVNWBF5CtiBpzfyn5LISpvllaH82IHc/2KIquWaJ3zASotAnYGnw9yivm1XEUWmTp8iexC5HtWJX1Ha8w0WbO1jAxixI9K2ovnsunYb9na4DdUPZwGYpCtUSYLdfe4ByV8P4/NSgy7b1gWhOMZkQS6CDqiOvZb4PYakRwAijnNq9j4IjD0LhBLt1tktyxTKocr20dzna1X2vnlHTye+7Pv/8oC1BMapX5fK0F/MjBNqgyLUJaGW0B+4tlKkro4zcHqDECNNHqo63DeO3n30mfw9OmZf9KcG/NVjE1K2x4Jq/qCwqywfmixDj3imHsPqRzYGdk/WyB/qvrbDhXAIESYjfbmNwEmWYzDL53QFtYUe0sq7X5UKAQ0xRukkiw+J0piXxm6F8w3AMK0iG6c8oYPv1x0XE3poz9AcBuYeZvO2YinwIz3EDAC/X5IX01LHO/YgZmuR1HxYd94LLH07fUWce0lMNi59cYz7tewbvD7sF8MjBZqaUsYHXYo3vMNUCPA6cblH3H37zydN14UCieGDFj2JmQST50C+Ghde4FM9LEd65mMSzYJ1ebAxg5KOuQdCI9lp6ly0X8E25PLyV2pNkw=,iv:kl/ncaAFfOKk0vBoa8TYFJ83aBusUVh1K7j8QFcimBo=,tag:xbDhuTBz2KNAkEhr0JEmNg==,type:str]
-    client.key: ENC[AES256_GCM,data:rRTP8is1fmxD5cpi5Zb5PKClL23YaTOCVii6AfS7SOhl1QdhzbpLJSLc0sx1+xKeTlFD/ejT0+qA9QJgvGQdQ8OvdarWKNVIKUVZwaW0aRN0jjds92yw9zXOtncDf3C4Ee5fWKMYZFwF0lCnXMuxHj7t2zO3r+F7QvAHIU2uYeHVWer4LnD7TieW3bsku7eDi5L4Kt3+4Si8/QuIaoJv5zpR/IxDnJEimg0U3V2s5dnbROL6kvJPQ4rfZjkLnZAebZXDKhVCVbWYkEu/kzis6wMkCgnURE332lHqAULMYiFthukUGCh2JTHBMRm1SNf8Vnl1JQx4ULy1L1gQJDqNJ4aC4gJjsQsRtv8E2PKznZEHnP/Vazgv4dRKlIowOrHC0ng0ujE4I3CYhR3/5vOckLok,iv:q+mMNwSggDp/MUYYzuetbDT+KPrLMybf8FrNnmwERHc=,tag:tuSePVFEs892obgf23OoDw==,type:str]
+    client.crt: ENC[AES256_GCM,data:FFST8tx/SN0LKL4z0QChoPPaiLSIAJYtyFTkVbwgZhFMicL1ZAuIdvxKtix1MSKuMiKTW7sSyckdtFGyltcAAUvO5WMUfpaBmkCaoOqn8EYxWkpdCnOLO68Sjcw43crGHN2d2yB8963+jF0kZgXEvqUoWs4mV6YrQ11wsQnLzHOvdRoeeCeRXFxmZtHP4KPF9NzlmMEaYYsQhtt3UyOpz5obXCsWXWKE9xm0FYZfIGJ4VakO1GgJX6yBLWSE6j8IWimtM5Zh/jAfoKrOdBFzk5Q3+7ARWuRnJkOpbwwCxvDyDj+pL+W1nE+Tl8HYridJv9Yq/a1LvtjBNhSNdQyZNQTt7bmgKOYN3JaH9wJJDUPywlfqCUAw7FP+lej8QVLwlNW1Kx3j12KFC6G2f0ZTNjw7lI6UiprL0egr3UN0hR2ZUq5W8i4pnwFCi7GdrZqRercAH8sXyG/zGnqQc8YBrhBKHfpY+H2fnZqJ5otrYlFCOcFVnpEv3J+2lMp1ZGvPrhkMtRGBND+IN5MQbofpiUb7Vcg5yPM6rWE5d1h0spCYPFrx0ICOQnjqbPe4aKpMED4v/OsHTkBp/QlIiVNrPmgjgsMP2biKJl4LSsn6NRoKvfqRg0BNTz676DSpaeBYtVAb6mAWS53ZzWFH9kyM67w6exJCQWGE3v9DRI5n5j66x8Q4XLy1po62EyymROQn3n2tl8XX7YA27Y5YDhBvjlK5UWasOrvocRYIwlWJ/hDVhT/bt/Z95V1T4elRJpm6gcQp4v0oBw7rZ2bAVaNMa30fAa4yO4nvtTV2N7Srqhdz4XHiJwRz3BPEpO9O7do3DfvOnOT1qfB2Aie7Qzsc6fseWZGMM0D/bh2arGbSR/ZU0DkBfu+lXX8N71xChwVimu8szkPloZA=,iv:4ceKu5LpVnnko/JMIvawcY9cleOGXQvpaLExG3XyP1k=,tag:7w3dtGL+zVNVL0+UGq6ANA==,type:str]
+    client.key: ENC[AES256_GCM,data:3xZRM3wmV5MvHoeoI+hreJBtr+8SgaP6xVAnr6RYhZb6vPQZwxjBXQYoGlhvGN76Z/I+ehwkGgJ7ovUaMw5Nzq+/dKI5s7MTlzxWoQhy30Zx3o/Kdl6yEdUX7o65XWRkxAojnzylaNTGffHYSmk+zto7Jod/xfB74fNa2pNwZF9uaeACBqZKTWI+uaXoNRs29bbeRSjBvpCwZh8cJKTwwEvRbKBKwCF/UOSOJ4rL7Kaw9uzpCt8074Z+VIqDhN/WNM9WBEUMCjBm//9r7rvlSTixtKPHv/Sx+Bu/EwmBT3UTnp9ZiuGJ03rKtTSGU7gVhNkKmSFKK0PQmNS6A498n7nlLq0SB0dENcAkMN/sQOsli+XKzzN7mPyXyUKJ89ZKynFUjstGzYinZM4V8zgzu8Mz,iv:+Aqy6gb8fmldycxmj5Y6W+qoKn4zpEIyJKnd5d3p9/g=,tag:vhPWhHkoULq4klk9+iAjKw==,type:str]
 sops:
     age:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
-            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
-            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
-            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
-            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOK2ZOYXZHclo2S1YrR1Qz
+            MHh4Qm41YUsreFRiQUdrUFV1NkUxekJ4elMwClpnZzk1TjRxRU9rZlJHeEw5T2lo
+            RWdJZkd2WkgveXoxcy9lOWFnV2RUbjAKLS0tIDdWUUVtOWxwRm5oUmh0LytWTU9X
+            N0M2MEV4bis2b0IvNjkvT2tVMUJhR0kKf2tgmV6rBkqcU4pdROlEIUVUzatp3QIu
+            09KbCW9la5+CwA/hq2HiJZOwiSnFN7SakVR5fVbe0gfiPIkI6HZm4Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-08T16:13:12Z"
-    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
+    lastmodified: "2026-02-18T22:30:59Z"
+    mac: ENC[AES256_GCM,data:uSs9FJY35RoZPGhIMV1fw2m24tGcXdau824LC3m9D/IbMqPJC/1rMGv9I/ujkkJvODwfNGR6DTGxpEFUhOPNdO7phkisgyWU7y61C++D8RoxV0MeLtUvZojmuZxtCRax0UojR1m0tqdrqfsP9alZJugIG4FvUlSiByaSPOQ7VQU=,iv:ev/v4aze+wYfJdK8TmdKR2+SUhNCCsP8TZc4GdhNtHM=,tag:MpY9bS0mBkCy10e3ylxSsA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0
 ---
@@ -36,14 +36,14 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
-            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
-            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
-            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
-            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOK2ZOYXZHclo2S1YrR1Qz
+            MHh4Qm41YUsreFRiQUdrUFV1NkUxekJ4elMwClpnZzk1TjRxRU9rZlJHeEw5T2lo
+            RWdJZkd2WkgveXoxcy9lOWFnV2RUbjAKLS0tIDdWUUVtOWxwRm5oUmh0LytWTU9X
+            N0M2MEV4bis2b0IvNjkvT2tVMUJhR0kKf2tgmV6rBkqcU4pdROlEIUVUzatp3QIu
+            09KbCW9la5+CwA/hq2HiJZOwiSnFN7SakVR5fVbe0gfiPIkI6HZm4Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-08T16:13:12Z"
-    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
+    lastmodified: "2026-02-18T22:30:59Z"
+    mac: ENC[AES256_GCM,data:uSs9FJY35RoZPGhIMV1fw2m24tGcXdau824LC3m9D/IbMqPJC/1rMGv9I/ujkkJvODwfNGR6DTGxpEFUhOPNdO7phkisgyWU7y61C++D8RoxV0MeLtUvZojmuZxtCRax0UojR1m0tqdrqfsP9alZJugIG4FvUlSiByaSPOQ7VQU=,iv:ev/v4aze+wYfJdK8TmdKR2+SUhNCCsP8TZc4GdhNtHM=,tag:MpY9bS0mBkCy10e3ylxSsA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0
 ---
@@ -61,7 +61,7 @@ spec:
                     volumes:
                         - name: incus-config
                           secret:
-                            secretName: ENC[AES256_GCM,data:BhIxxk8U5eA3v7vwXcgxtd4lYQ==,iv:csEgD9IdOUbWlry3XLjorrksGO2nhM0YfbsIhG0XGXk=,tag:BPvaNTrmWE+TP7bZVfJyZg==,type:str]
+                            secretName: ENC[AES256_GCM,data:Vo5KYYFuqDcNnsOmoLzExeLj/Q==,iv:GS+TPU7XmC+Jq9kurZeWFPdowPmeycMJOujFzeYrulE=,tag:Ps9hK9cp+TYiWj/859Hwqw==,type:str]
                     containers:
                         - name: package-runtime
                           command:
@@ -79,13 +79,58 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVSCs3d0dIRmJoK3hLbWRW
-            ckcwSXpRVjN1RGlOM3MzczJLeDhobW5xRURnCjZXWWJZRWEyb1kwZW5JdzRsMkta
-            SGNQNU54QkVieUJpb2RUTVpYalkvWmsKLS0tIE8vUmtZRmdWT2FVZ3Y1N0lnUm9x
-            UEQ4M2tSSndIMTFIYi85S1BEWXJHZzgKHC+ZWAaKwdWHQEByqurQMtEaAFFrgV9e
-            fkAaD0xZwcsCitBNmt4xt7sDaduXi1bQeFe+lz+UkjZTj/nz4WgPPQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOK2ZOYXZHclo2S1YrR1Qz
+            MHh4Qm41YUsreFRiQUdrUFV1NkUxekJ4elMwClpnZzk1TjRxRU9rZlJHeEw5T2lo
+            RWdJZkd2WkgveXoxcy9lOWFnV2RUbjAKLS0tIDdWUUVtOWxwRm5oUmh0LytWTU9X
+            N0M2MEV4bis2b0IvNjkvT2tVMUJhR0kKf2tgmV6rBkqcU4pdROlEIUVUzatp3QIu
+            09KbCW9la5+CwA/hq2HiJZOwiSnFN7SakVR5fVbe0gfiPIkI6HZm4Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-02-08T16:13:12Z"
-    mac: ENC[AES256_GCM,data:Eg9Ff0n0WYnRIljtt3LF7IV0d98U+UqlhFWN49r/AHJpjE2d3hN4qz0RrgWUwUJTlQBfLVcYjeRibIxmQ3VQNZFfxUJsW6W7F4sh+3rNci/Ss/2CS8ucLQ1wNthGWU7it1G+IfcCYFDjp7G2Yl+2eXZbW+MzzRD1wl0W9qo3i5o=,iv:hndqx8je38DYRGFyvJK/vwywjY8GoTdk2f904dXRAsk=,tag:w1k+5GNkqy5P1pc6S0f6jA==,type:str]
+    lastmodified: "2026-02-18T22:30:59Z"
+    mac: ENC[AES256_GCM,data:uSs9FJY35RoZPGhIMV1fw2m24tGcXdau824LC3m9D/IbMqPJC/1rMGv9I/ujkkJvODwfNGR6DTGxpEFUhOPNdO7phkisgyWU7y61C++D8RoxV0MeLtUvZojmuZxtCRax0UojR1m0tqdrqfsP9alZJugIG4FvUlSiByaSPOQ7VQU=,iv:ev/v4aze+wYfJdK8TmdKR2+SUhNCCsP8TZc4GdhNtHM=,tag:MpY9bS0mBkCy10e3ylxSsA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
+    version: 3.11.0
+---
+apiVersion: opentofu.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+    name: iaas
+spec:
+    configuration: |
+        terraform {
+          required_providers {
+            incus = {
+              source = "lxc/incus"
+              version = "1.0.2"
+            }
+          }
+          backend "kubernetes" {
+            secret_suffix     = "providerconfig-default"
+            namespace         = "crossplane-system"
+            in_cluster_config = true
+          }
+        }
+
+        provider "incus" {
+          accept_remote_certificate = true
+          default_remote            = "iaas"
+          config_dir                = "/tofu/config/incus"
+          remote {
+            name    = "iaas"
+            address = "https://iaas.phorge.fr:443"
+          }
+        }
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOK2ZOYXZHclo2S1YrR1Qz
+            MHh4Qm41YUsreFRiQUdrUFV1NkUxekJ4elMwClpnZzk1TjRxRU9rZlJHeEw5T2lo
+            RWdJZkd2WkgveXoxcy9lOWFnV2RUbjAKLS0tIDdWUUVtOWxwRm5oUmh0LytWTU9X
+            N0M2MEV4bis2b0IvNjkvT2tVMUJhR0kKf2tgmV6rBkqcU4pdROlEIUVUzatp3QIu
+            09KbCW9la5+CwA/hq2HiJZOwiSnFN7SakVR5fVbe0gfiPIkI6HZm4Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-18T22:30:59Z"
+    mac: ENC[AES256_GCM,data:uSs9FJY35RoZPGhIMV1fw2m24tGcXdau824LC3m9D/IbMqPJC/1rMGv9I/ujkkJvODwfNGR6DTGxpEFUhOPNdO7phkisgyWU7y61C++D8RoxV0MeLtUvZojmuZxtCRax0UojR1m0tqdrqfsP9alZJugIG4FvUlSiByaSPOQ7VQU=,iv:ev/v4aze+wYfJdK8TmdKR2+SUhNCCsP8TZc4GdhNtHM=,tag:MpY9bS0mBkCy10e3ylxSsA==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
     version: 3.11.0
