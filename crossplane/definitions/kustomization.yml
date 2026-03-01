@@ -1,4 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - iaas-vm.yml
+  - iaas-project.yml
+  - iaas-network.yml
+  - iaas-load_balancer.yml
+  - iaas-instance.yml
+  - iaas-forward.yml

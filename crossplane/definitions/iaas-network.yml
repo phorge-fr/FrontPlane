@@ -1,0 +1,138 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: networks.iaas.phorge.fr
+spec:
+  scope: Cluster
+  group: iaas.phorge.fr
+  names:
+    kind: Network
+    plural: networks
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              type:
+                type: string
+              config:
+                type: object
+                additionalProperties:
+                  type: string
+              project:
+                type: string
+              remote:
+                type: string
+              target:
+                type: string
+            required:
+              - name
+              - type
+              - project
+          status:
+            type: object
+            properties:
+              error:
+                description: Returns tofu error message if the workspace creation failed
+                type: string
+              mtu:
+                type: integer
+                description: The MTU of the network
+              ipv4_address:
+                type: string
+                description: The IPv4 address of the network
+              ipv6_address:
+                type: string
+                description: The IPv6 address of the network
+              external_ipv4:
+                type: string
+                description: The external IPv4 address of the network
+              external_ipv6:
+                type: string
+                description: The external IPv6 address of the network
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: network.iaas.phorge.fr
+  labels:
+    provider: incus
+spec:
+  compositeTypeRef:
+    apiVersion: iaas.phorge.fr/v1alpha1
+    kind: Network
+  mode: Pipeline
+  pipeline:
+  - step: create-network
+    functionRef:
+      name: fn-pythonic
+    input:
+      apiVersion: pythonic.fn.crossplane.io/v1alpha1
+      kind: Composite
+      composite: |
+        import json
+        import re
+        import base64
+        import gzip
+
+        class NetworkComposite(BaseComposite):
+          def compose(self):
+
+            specs = json.loads(format(self.request.observed.composite.resource["spec"], "json"))
+
+            network = self.resources.network("opentofu.upbound.io/v1beta1", "Workspace")
+            network.spec.providerConfigRef.name = "iaas"
+            network.spec.forProvider.source = "Inline"
+            network.spec.forProvider.module = f"""resource "incus_network" "network" {{
+            name        = "{specs['name']}"
+            description = "{specs.get('description', 'crosssplane;;;')}"
+            type    = "{specs['type']}"
+            config   = {json.dumps(specs.get("config", {}))}
+            project = "{specs['project']}"
+            remote      = "{specs.get('remote', 'iaas')}"
+            target  = {specs.get("target", "null")}
+            }}
+            """
+
+            network_data = self.resources.network_data("opentofu.upbound.io/v1beta1", "Workspace") # Required because terraform-provider-incus return the applied configuration values instead of the one provided by incus itself
+            network_data.spec.providerConfigRef.name = "iaas"
+            network_data.spec.forProvider.source = "Inline"
+            network_data.spec.forProvider.module = f"""data "incus_network" "network" {{
+              name = "{specs['name']}"
+            }}
+            output "network_config" {{
+              value = data.incus_network.network.config
+            }}
+            """
+
+            if network.status:
+                network_status = json.loads(format(network.status, "json"))
+                message = next((c["message"] for c in network_status["conditions"] if "message" in c), None)
+                status = next((c["status"] for c in network_status["conditions"] if "observedGeneration" in c), None).lower() == "true"
+
+                if message:
+                    match = re.search(r'echo\s+"([A-Za-z0-9+/=]+)"\s*\|\s*base64', message)
+                    decoded = base64.b64decode(match.group(1))
+                    message = gzip.decompress(decoded).decode('utf-8')
+
+                self.ready = status
+                self.status.error = str(message)
+
+            if network_data.status:
+                network_data_config = json.loads(format(network_data.status.atProvider.outputs.network_config, "json"))
+
+                self.status.mtu = int(network_data_config.get("bridge.mtu"))
+                self.status.ipv4_address = str(network_data_config.get("ipv4.address"))
+                self.status.ipv6_address = str(network_data_config.get("ipv6.address"))
+                self.status.external_ipv4 = str(network_data_config.get("volatile.network.ipv4.address"))
+                self.status.external_ipv6 = str(network_data_config.get("volatile.network.ipv6.address"))

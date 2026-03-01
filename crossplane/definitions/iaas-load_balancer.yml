@@ -1,0 +1,153 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: loadbalancers.iaas.phorge.fr
+spec:
+  scope: Cluster
+  group: iaas.phorge.fr
+  names:
+    kind: LoadBalancer
+    plural: loadbalancers
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              network:
+                type: string
+              listen_address:
+                type: string
+              description:
+                type: string
+              backends:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    target_address:
+                      type: string
+                    target_port:
+                      type: array
+                      items:
+                        type: string
+                    description:
+                      type: string
+                  required:
+                    - name
+                    - target_address
+              ports:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    listen_port:
+                      type: array
+                      items:
+                        type: string
+                    target_backend:
+                      type: array
+                      items:
+                        type: string
+                    protocol:
+                      type: string
+                    description:
+                      type: string
+                  required:
+                    - listen_port
+                    - target_backend
+              config:
+                type: object
+                additionalProperties:
+                  type: string
+              project:
+                type: string
+              remote:
+                type: string
+            required:
+              - network
+              - listen_address
+              - project
+          status:
+            type: object
+            properties:
+              error:
+                description: Returns tofu error message if the workspace creation failed
+                type: string
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: loadbalancer.iaas.phorge.fr
+  labels:
+    provider: incus
+spec:
+  compositeTypeRef:
+    apiVersion: iaas.phorge.fr/v1alpha1
+    kind: LoadBalancer
+  mode: Pipeline
+  pipeline:
+  - step: create-loadbalancer
+    functionRef:
+      name: fn-pythonic
+    input:
+      apiVersion: pythonic.fn.crossplane.io/v1alpha1
+      kind: Composite
+      composite: |
+        import json
+        import re
+        import base64
+        import gzip
+
+        def terraformize(k: str, v):
+            result = ""
+            for value in v:
+                result += f"{k} {{\n"
+                for key, val in value.items():
+                    result += f"   {key} = {json.dumps(val)}\n"
+                result += "  }\n"
+            
+            return result
+
+        class LoadBalancerComposite(BaseComposite):
+          def compose(self):
+
+            specs = json.loads(format(self.request.observed.composite.resource["spec"], "json"))
+
+            backends = [{"name": backend["name"], "description": backend.get("description"), "target_address": backend["target_address"], "target_port": ','.join(backend.get("target_port", ""))} for backend in specs.get("backends", [])]
+            ports = [{"listen_port": ','.join(backend["listen_port"]), "target_backend": backend["target_backend"], "protocol": backend.get("protocol"), "description": backend.get("description")} for backend in specs.get("ports", [])]
+
+            loadbalancer = self.resources.loadbalancer("opentofu.upbound.io/v1beta1", "Workspace")
+            loadbalancer.spec.providerConfigRef.name = "iaas"
+            loadbalancer.spec.forProvider.source = "Inline"
+            loadbalancer.spec.forProvider.module = f"""resource "incus_network_lb" "loadbalancer" {{
+            network        = "{specs['network']}"
+            listen_address = "{specs['listen_address']}"
+            description    = "{specs.get('description', 'crosssplane;;;')}"
+            {terraformize("backend", backends)}
+            {terraformize("port", ports)}
+            config   = {json.dumps(specs.get("config", {}))}
+            project = "{specs['project']}"
+            remote      = "{specs.get('remote', 'iaas')}"
+            }}
+            """
+
+            if loadbalancer.status:
+                loadbalancer_status = json.loads(format(loadbalancer.status, "json"))
+                message = next((c["message"] for c in loadbalancer_status["conditions"] if "message" in c), None)
+                status = next((c["status"] for c in loadbalancer_status["conditions"] if "observedGeneration" in c), None).lower() == "true"
+
+                if message:
+                    match = re.search(r'echo\s+"([A-Za-z0-9+/=]+)"\s*\|\s*base64', message)
+                    decoded = base64.b64decode(match.group(1))
+                    message = gzip.decompress(decoded).decode('utf-8')
+
+                self.ready = status
+                self.status.error = str(message)

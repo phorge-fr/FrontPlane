@@ -1,0 +1,95 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: projects.iaas.phorge.fr
+spec:
+  scope: Cluster
+  group: iaas.phorge.fr
+  names:
+    kind: Project
+    plural: projects
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              config:
+                type: object
+                additionalProperties:
+                  type: string
+              remote:
+                type: string
+              force_destroy:
+                type: boolean
+            required:
+              - name
+          status:
+            type: object
+            properties:
+              error:
+                description: Returns tofu error message if the workspace creation failed
+                type: string
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: project.iaas.phorge.fr
+  labels:
+    provider: incus
+spec:
+  compositeTypeRef:
+    apiVersion: iaas.phorge.fr/v1alpha1
+    kind: Project
+  mode: Pipeline
+  pipeline:
+  - step: create-project
+    functionRef:
+      name: fn-pythonic
+    input:
+      apiVersion: pythonic.fn.crossplane.io/v1alpha1
+      kind: Composite
+      composite: |
+        import json
+        import re
+        import base64
+        import gzip
+
+        class ProjectComposite(BaseComposite):
+          def compose(self):
+
+            specs = json.loads(format(self.request.observed.composite.resource["spec"], "json"))
+
+            project = self.resources.project("opentofu.upbound.io/v1beta1", "Workspace")
+            project.spec.providerConfigRef.name = "iaas"
+            project.spec.forProvider.source = "Inline"
+            project.spec.forProvider.module = f"""resource "incus_project" "project" {{
+            name        = "{specs['name']}"
+            description = "{specs.get('description', 'crosssplane;;;')}"
+            config   = {json.dumps(specs.get("config", {}))}
+            remote      = "{specs.get('remote', 'iaas')}"
+            force_destroy     = {str(specs.get('force_destroy', True)).lower()}
+            }}
+            """
+
+            if project.status:
+                project_status = json.loads(format(project.status, "json"))
+                message = next((c["message"] for c in project_status["conditions"] if "message" in c), None)
+                status = next((c["status"] for c in project_status["conditions"] if "observedGeneration" in c), None).lower() == "true"
+                
+                if message:
+                    match = re.search(r'echo\s+"([A-Za-z0-9+/=]+)"\s*\|\s*base64', message)
+                    decoded = base64.b64decode(match.group(1))
+                    message = gzip.decompress(decoded).decode('utf-8')
+
+                self.ready = status
+                self.status.error = str(message)
