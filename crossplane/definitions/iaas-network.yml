@@ -85,6 +85,12 @@ spec:
         import base64
         import gzip
 
+        def handle_status(status: any):
+          if isinstance(status, str):
+            return {}
+          else:
+            return json.loads(status)
+
         class NetworkComposite(BaseComposite):
           def compose(self):
 
@@ -129,7 +135,7 @@ spec:
                 self.status.error = str(message)
 
             if network_data.status:
-                network_data_config = json.loads(format(network_data.status.atProvider.outputs.network_config, "json"))
+                network_data_config = handle_status(format(network_data.status.atProvider.outputs.network_config, "json"))
 
                 self.status.mtu = int(network_data_config.get("bridge.mtu"))
                 self.status.ipv4_address = str(network_data_config.get("ipv4.address"))

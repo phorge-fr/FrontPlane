@@ -125,6 +125,12 @@ spec:
             
             return result
 
+        def handle_status(status: any):
+          if isinstance(status, str):
+            return {}
+          else:
+            return json.loads(status)
+
         class InstanceComposite(BaseComposite):
           def compose(self):
 
@@ -162,8 +168,8 @@ spec:
               message = next((c["message"] for c in instance_status["conditions"] if "message" in c), None)
               status = next((c["status"] for c in instance_status["conditions"] if "observedGeneration" in c), None).lower() == "true"
 
-              instance_config = json.loads(format(instance.status.atProvider.outputs.instance_config, "json"))
-
+              instance_config = handle_status(format(instance.status.atProvider.outputs.instance_config, "json"))
+              
               if message:
                 match = re.search(r'echo\s+"([A-Za-z0-9+/=]+)"\s*\|\s*base64', message)
                 decoded = base64.b64decode(match.group(1))
