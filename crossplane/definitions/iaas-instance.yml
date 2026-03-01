@@ -116,14 +116,14 @@ spec:
         import gzip
 
         def terraformize(k: str, v):
-            result = ""
-            for value in v:
-                result += f"{k} {{\n"
-                for key, val in value.items():
-                    result += f"   {key} = {json.dumps(val)}\n"
-                result += "  }\n"
+          result = ""
+          for value in v:
+            result += f"{k} {{\n"
+            for key, val in value.items():
+              result += f"   {key} = {json.dumps(val)}\n"
+            result += "  }\n"
             
-            return result
+          return result
 
         def handle_status(status: any):
           if isinstance(status, str):
