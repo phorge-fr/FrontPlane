@@ -142,7 +142,6 @@ spec:
             instance = self.resources.instance("opentofu.upbound.io/v1beta1", "Workspace")
             instance.spec.providerConfigRef.name = "iaas"
             instance.spec.forProvider.source = "Inline"
-            instance.spec.forProvider.enableTofuCLILogging = True
             instance.spec.forProvider.module = f"""resource "incus_instance" "instance" {{
             name        = "{specs['name']}"
             image       = "{specs['image']}"
