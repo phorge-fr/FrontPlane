@@ -45,9 +45,6 @@ spec:
               error:
                 description: Returns tofu error message if the workspace creation failed
                 type: string
-              mtu:
-                type: integer
-                description: The MTU of the network
               ipv4_address:
                 type: string
                 description: The IPv4 address of the network
@@ -137,7 +134,6 @@ spec:
             if network_data.status:
                 network_data_config = handle_status(format(network_data.status.atProvider.outputs.network_config, "json"))
 
-                self.status.mtu = int(network_data_config.get("bridge.mtu"))
                 self.status.ipv4_address = str(network_data_config.get("ipv4.address"))
                 self.status.ipv6_address = str(network_data_config.get("ipv6.address"))
                 self.status.external_ipv4 = str(network_data_config.get("volatile.network.ipv4.address"))
