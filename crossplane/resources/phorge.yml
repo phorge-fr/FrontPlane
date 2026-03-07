@@ -1,0 +1,124 @@
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Project
+metadata:
+    name: phorge
+spec:
+    name: Phorge
+    description: Main project for Phorge instances
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxbmNacGw5ZU9tUkd4OUI2
+            VStuRmVLamFMNHBZKzFXRkQ3Q25mSzFSckg4Ckt2RWVnTVRHdEZWVG9FcmwzUUJu
+            dlIwVlljckxkTm01VmxzZmJ3OUhVSGMKLS0tIFhXY01WOU9lSFdrZVpDNWlIelk3
+            MTNVZkZFcEZpczJVL3M1UUROOVpWNFkKbNSqlwKTirHYRWnq/yMfNS8oqJQ0w2Vc
+            1NZKyZCM/h9N3Zqq76MxgdUZVNct8VT/b+5Vytnjz+GC3+dJykECqA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-07T20:32:31Z"
+    mac: ENC[AES256_GCM,data:oPTrad8W8NbnCRnQZma3W68l2CiD8qFJvKrfIbjYnd0f6VGbdlHLqhCdJhvI9NjmJETOYa1tlEe7PD6CDA+oDOuwonESx7w1AEmpxF1mW6WmqCr6IXzqgorkICY+FNIG+sHQp8C+NsjRbRC4cQyVxwCwlKcB3yM23np39htk4y0=,iv:BIgIZCi1OlzhpiY7vSKzZPMkvqtyKqBlq0uVFizV7Y4=,tag:yADugGsw2f/4iXFx8nieRw==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data)$
+    version: 3.11.0
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Network
+metadata:
+    name: main
+spec:
+    name: Main
+    type: ovn
+    project: Phorge
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxbmNacGw5ZU9tUkd4OUI2
+            VStuRmVLamFMNHBZKzFXRkQ3Q25mSzFSckg4Ckt2RWVnTVRHdEZWVG9FcmwzUUJu
+            dlIwVlljckxkTm01VmxzZmJ3OUhVSGMKLS0tIFhXY01WOU9lSFdrZVpDNWlIelk3
+            MTNVZkZFcEZpczJVL3M1UUROOVpWNFkKbNSqlwKTirHYRWnq/yMfNS8oqJQ0w2Vc
+            1NZKyZCM/h9N3Zqq76MxgdUZVNct8VT/b+5Vytnjz+GC3+dJykECqA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-07T20:32:31Z"
+    mac: ENC[AES256_GCM,data:oPTrad8W8NbnCRnQZma3W68l2CiD8qFJvKrfIbjYnd0f6VGbdlHLqhCdJhvI9NjmJETOYa1tlEe7PD6CDA+oDOuwonESx7w1AEmpxF1mW6WmqCr6IXzqgorkICY+FNIG+sHQp8C+NsjRbRC4cQyVxwCwlKcB3yM23np39htk4y0=,iv:BIgIZCi1OlzhpiY7vSKzZPMkvqtyKqBlq0uVFizV7Y4=,tag:yADugGsw2f/4iXFx8nieRw==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data)$
+    version: 3.11.0
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Instance
+metadata:
+    name: rustfs-s3-main
+spec:
+    name: rustfs-s3-main
+    image: images:alpine/3.23/cloud
+    description: RustFS S3 main instance
+    project: Phorge
+    type: virtual-machine
+    running: true
+    config:
+        limits.cpu: "1"
+        limits.memory: 1024MiB
+        security.secureboot: "false"
+        cloud-init.user-data: ENC[AES256_GCM,data:pluHI3TrlvnTd+heftAyxj4TUnkY3VMCJmRP8O1GakD9H3ZCrga/VHTJfgd4q/gab/o5YyLJH5ejOk/Ck72xDP8sXZrz5SyD03PhV5lyWVRSMS3dm4qk6jJ0OG4zb0HWBgjgCzixnvDeGQsd4+28RoTZ+ZFdVMzMuFNnczZ1KueqtcSDMj4TXKwBf9NS8E2qQKufvIVBTu58mW5NHZTSBpr72IB+2DG7JaDmwT4UAPKh7Nu79bJLCoQDOhdHjQXpUHZLuDSBddiIi0zY24YGQJ8DnqvKqm3UxdOfBnSMj4EkXd6uC+PvY5l9fJmoGmRchaiYQtox9NgjXuz6ekjG2Ii+/CDUVY3G/2vchG+PMbDduP0O+LsrgWrVeM7lXyJDoF7y+8OpSbWkpz6O3+J51F7+hVc2QPDcX6NNO0C/xbHw3TGH0XVPEldhmdet4iJzZiw2VFQL1QE7/T5Cc8XNG2wn+Hj6+ZxIRNNr28ottHhN+t5sBAFAjqk/wNNZiMOZevpI/O8HJVC5OILm4J9Cz2eXg9Prfmza6wVLgqxR8hoIiiOB0iYi53CJQDqqQFiG53JUA10MzB97EE8CtNtEVWU+LFyx/u33OJqi9Pjv3+WWk1t3l0+Yt7qP2sZqrCsY8ozfbV6nt4ZcrIpec8je/XdTTLl2jSEt/0cNkIJ6QSkIYhl2z/98qk1vLn7jX/wCnug8//vVLL9KgNhAFt/2TVPY1rJHVALmXCyHR94e/2AJazHm4GaFsdIcPEN47iGMTjMk5o35+Sy5yi18zgzlLU1Isy6XdHGiwpzBKNOHXfRq53qTIB/62Tajk3c4sWlEuSsnXFyQahkAUkjNOAymlXAu61+KM59HRt7A+BSIfNu6/B6vhnKfu2IQlI7aRPJEjADzZoVMhe4YQB6Gyfsxn4WfZZFIFNdqaoY0zybiuscCSkYpH40IO2kpJUt0oWkmwNxGCOt+Dl14JldL9VRvSii/wmiQ5WHgIDdObdeofkG7AQXhdbWkX0PMd/tJlUXG3rnHGBJNv6X6YBwxBL490r3skfKlzifY/hbDSu449dPzgXrzlooCSAV7EaOryRPhF2VfICcbSw/lm1cwct2w8OFsyQ0NFtEmxpaKx7DwADXZR1rpjBLheoZ9io6LYUPhkiEKh6GBeuLNF8eJ1hxrT91/5Zwjk2VkKuycxAbPdGD4H5zhIpKUp8yjsiwJlYCDjYqk98Djznh34LMiq7CJdUVoaQ4qLArBD2vCxv/lnUUxkXTsGGMTCXHXH2MKnlA2LYh95FyQW/0Es4u8AdJlChugIyA8WqSl6dXSe0gpQyzBiq/nxlipv6HEFJu9UEPYQJEjlYIzrfQ0Lpx/VZREZlTq2sRAQoIpC5bJ0J4YugYCUcbCtilrwaRBscy0U88LHx6kQ+FBcjsq+hWA,iv:m4y8y+YyROrwGh62ACZ1xUJ+DbTQWbnR6JFxT2MMgkA=,tag:eB793f5bQoXZux8k7bviVw==,type:str]
+    devices:
+        - name: root
+          type: disk
+          properties:
+            pool: local
+            path: /
+            size: 100GiB
+        - name: eth0
+          type: nic
+          properties:
+            network: Main
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxbmNacGw5ZU9tUkd4OUI2
+            VStuRmVLamFMNHBZKzFXRkQ3Q25mSzFSckg4Ckt2RWVnTVRHdEZWVG9FcmwzUUJu
+            dlIwVlljckxkTm01VmxzZmJ3OUhVSGMKLS0tIFhXY01WOU9lSFdrZVpDNWlIelk3
+            MTNVZkZFcEZpczJVL3M1UUROOVpWNFkKbNSqlwKTirHYRWnq/yMfNS8oqJQ0w2Vc
+            1NZKyZCM/h9N3Zqq76MxgdUZVNct8VT/b+5Vytnjz+GC3+dJykECqA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-07T20:32:31Z"
+    mac: ENC[AES256_GCM,data:oPTrad8W8NbnCRnQZma3W68l2CiD8qFJvKrfIbjYnd0f6VGbdlHLqhCdJhvI9NjmJETOYa1tlEe7PD6CDA+oDOuwonESx7w1AEmpxF1mW6WmqCr6IXzqgorkICY+FNIG+sHQp8C+NsjRbRC4cQyVxwCwlKcB3yM23np39htk4y0=,iv:BIgIZCi1OlzhpiY7vSKzZPMkvqtyKqBlq0uVFizV7Y4=,tag:yADugGsw2f/4iXFx8nieRw==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data)$
+    version: 3.11.0
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Forward
+metadata:
+    name: rustfs-s3-main-forward
+spec:
+    network: Main
+    description: Forward for RustFS S3
+    project: Phorge
+    listen_address: 10.3.0.1
+    ports:
+        - protocol: tcp
+          listen_port:
+            - "9000"
+            - "9001"
+          target_address: 10.145.33.2
+          target_port:
+            - "9000"
+            - "9001"
+          description: Forward for RustFS S3
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxbmNacGw5ZU9tUkd4OUI2
+            VStuRmVLamFMNHBZKzFXRkQ3Q25mSzFSckg4Ckt2RWVnTVRHdEZWVG9FcmwzUUJu
+            dlIwVlljckxkTm01VmxzZmJ3OUhVSGMKLS0tIFhXY01WOU9lSFdrZVpDNWlIelk3
+            MTNVZkZFcEZpczJVL3M1UUROOVpWNFkKbNSqlwKTirHYRWnq/yMfNS8oqJQ0w2Vc
+            1NZKyZCM/h9N3Zqq76MxgdUZVNct8VT/b+5Vytnjz+GC3+dJykECqA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-07T20:32:31Z"
+    mac: ENC[AES256_GCM,data:oPTrad8W8NbnCRnQZma3W68l2CiD8qFJvKrfIbjYnd0f6VGbdlHLqhCdJhvI9NjmJETOYa1tlEe7PD6CDA+oDOuwonESx7w1AEmpxF1mW6WmqCr6IXzqgorkICY+FNIG+sHQp8C+NsjRbRC4cQyVxwCwlKcB3yM23np39htk4y0=,iv:BIgIZCi1OlzhpiY7vSKzZPMkvqtyKqBlq0uVFizV7Y4=,tag:yADugGsw2f/4iXFx8nieRw==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data)$
+    version: 3.11.0
