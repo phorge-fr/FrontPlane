@@ -112,6 +112,9 @@ spec:
             network_data.spec.forProvider.source = "Inline"
             network_data.spec.forProvider.module = f"""data "incus_network" "network" {{
               name = "{specs['name']}"
+              project = "{specs['project']}"
+              remote = "{specs.get('remote', 'iaas')}"
+              target = {specs.get("target", "null")}
             }}
             output "network_config" {{
               value = data.incus_network.network.config
