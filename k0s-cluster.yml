@@ -13,10 +13,6 @@ spec:
         name: k0s
       spec:
         api:
-          extraArgs:
-            oidc-issuer-url: https://git.phorge.fr/
-            oidc-client-id: b8622e31-f19d-4526-ab64-7793eb071835
-            oidc-username-claim: email
           k0sApiPort: 9443
           port: 6443
           sans:
