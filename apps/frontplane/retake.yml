@@ -2,45 +2,6 @@ apiVersion: v1
 kind: Namespace
 metadata:
     name: retake-web
-sops:
-    age:
-        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHci9HMWQyaHVaV1BPbzBp
-            ZWNxckJrMzg0Zk5QNENvdmRPTnZtd09BRDNNCkhDeVhnTTI5bHlOaHZOUlBZbG41
-            YS9tNlVGckM2M2REY0p1Q2VUa3N6alUKLS0tIElRaEJzYWx0SzFJWGRrU0VuejYz
-            aUNRL3hrWWJ2ZWVVcDE2RklhZVFpeFUKQu2JCgrbB4q9EO6dc9xrP9u/PJxU1LDG
-            NI4T0WBEqxAahhcvVFeyZK244C/WZ9lGSCgtt4REGsE62I6SL+Hgsw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-10T19:55:08Z"
-    mac: ENC[AES256_GCM,data:KSTD5pAzjzQ0fZldIFKoe6rdZgs90yXtUlwbGatCNENwxiGLWPg/JX7VlvFrZn0Cgv4gCCekh/8xxYuZJY8kYLFLlrgjMKv0YVv5p6fkQi+tA3F83R8Xg3vCCVAG/uIVdgJhJTCMLoKueoFlpIgLaZepkj2YB7Y0DZzYjum4/gc=,iv:FFaFdgOoR3MKjLUaf3UP6fcFVKOGN3hhlrtVLkst8ns=,tag:9CYk18f4xniF2HAEm2EL6g==,type:str]
-    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
-    version: 3.11.0
----
-apiVersion: v1
-data:
-    .dockerconfigjson: ENC[AES256_GCM,data:PoOLLPVMKiyq6Pqh1hBbYxoXKxkWPsWRWXtEtY302V+K8hb66vdmTRH0ShAWNyw2cYrlCltV8DBZaJuTwCENoH73BcRRE2RURatfTun70nJ2AMABvZr7KsynGtAt2XtUdbW1u338b2BlQsNyZjUrbVGd7BW3rWaTJyeeWWcfidP8HX8G,iv:EGyhKJs1MpBmSZo3jpmuNo9CYzM/QJJDUFdr5de2ERA=,tag:QZ16JXRIYpjNR8FjbNtw2g==,type:str]
-kind: Secret
-metadata:
-    name: regcred
-    namespace: retake-web
-type: kubernetes.io/dockerconfigjson
-sops:
-    age:
-        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHci9HMWQyaHVaV1BPbzBp
-            ZWNxckJrMzg0Zk5QNENvdmRPTnZtd09BRDNNCkhDeVhnTTI5bHlOaHZOUlBZbG41
-            YS9tNlVGckM2M2REY0p1Q2VUa3N6alUKLS0tIElRaEJzYWx0SzFJWGRrU0VuejYz
-            aUNRL3hrWWJ2ZWVVcDE2RklhZVFpeFUKQu2JCgrbB4q9EO6dc9xrP9u/PJxU1LDG
-            NI4T0WBEqxAahhcvVFeyZK244C/WZ9lGSCgtt4REGsE62I6SL+Hgsw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-10T19:55:08Z"
-    mac: ENC[AES256_GCM,data:KSTD5pAzjzQ0fZldIFKoe6rdZgs90yXtUlwbGatCNENwxiGLWPg/JX7VlvFrZn0Cgv4gCCekh/8xxYuZJY8kYLFLlrgjMKv0YVv5p6fkQi+tA3F83R8Xg3vCCVAG/uIVdgJhJTCMLoKueoFlpIgLaZepkj2YB7Y0DZzYjum4/gc=,iv:FFaFdgOoR3MKjLUaf3UP6fcFVKOGN3hhlrtVLkst8ns=,tag:9CYk18f4xniF2HAEm2EL6g==,type:str]
-    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
-    version: 3.11.0
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -61,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: website
-                  image: git.haum.lnmch.fr/lnmch/website:latest
+                  image: git.phorge.fr/retake/retake.fr:latest
                   ports:
                     - containerPort: 3000
                   resources:
@@ -71,23 +32,6 @@ spec:
                     limits:
                         memory: 256Mi
                         cpu: 1000m
-            imagePullSecrets:
-                - name: regcred
-sops:
-    age:
-        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHci9HMWQyaHVaV1BPbzBp
-            ZWNxckJrMzg0Zk5QNENvdmRPTnZtd09BRDNNCkhDeVhnTTI5bHlOaHZOUlBZbG41
-            YS9tNlVGckM2M2REY0p1Q2VUa3N6alUKLS0tIElRaEJzYWx0SzFJWGRrU0VuejYz
-            aUNRL3hrWWJ2ZWVVcDE2RklhZVFpeFUKQu2JCgrbB4q9EO6dc9xrP9u/PJxU1LDG
-            NI4T0WBEqxAahhcvVFeyZK244C/WZ9lGSCgtt4REGsE62I6SL+Hgsw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-10T19:55:08Z"
-    mac: ENC[AES256_GCM,data:KSTD5pAzjzQ0fZldIFKoe6rdZgs90yXtUlwbGatCNENwxiGLWPg/JX7VlvFrZn0Cgv4gCCekh/8xxYuZJY8kYLFLlrgjMKv0YVv5p6fkQi+tA3F83R8Xg3vCCVAG/uIVdgJhJTCMLoKueoFlpIgLaZepkj2YB7Y0DZzYjum4/gc=,iv:FFaFdgOoR3MKjLUaf3UP6fcFVKOGN3hhlrtVLkst8ns=,tag:9CYk18f4xniF2HAEm2EL6g==,type:str]
-    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
-    version: 3.11.0
 ---
 apiVersion: v1
 kind: Service
@@ -101,21 +45,6 @@ spec:
         - name: http
           port: 3000
           targetPort: 3000
-sops:
-    age:
-        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHci9HMWQyaHVaV1BPbzBp
-            ZWNxckJrMzg0Zk5QNENvdmRPTnZtd09BRDNNCkhDeVhnTTI5bHlOaHZOUlBZbG41
-            YS9tNlVGckM2M2REY0p1Q2VUa3N6alUKLS0tIElRaEJzYWx0SzFJWGRrU0VuejYz
-            aUNRL3hrWWJ2ZWVVcDE2RklhZVFpeFUKQu2JCgrbB4q9EO6dc9xrP9u/PJxU1LDG
-            NI4T0WBEqxAahhcvVFeyZK244C/WZ9lGSCgtt4REGsE62I6SL+Hgsw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-10T19:55:08Z"
-    mac: ENC[AES256_GCM,data:KSTD5pAzjzQ0fZldIFKoe6rdZgs90yXtUlwbGatCNENwxiGLWPg/JX7VlvFrZn0Cgv4gCCekh/8xxYuZJY8kYLFLlrgjMKv0YVv5p6fkQi+tA3F83R8Xg3vCCVAG/uIVdgJhJTCMLoKueoFlpIgLaZepkj2YB7Y0DZzYjum4/gc=,iv:FFaFdgOoR3MKjLUaf3UP6fcFVKOGN3hhlrtVLkst8ns=,tag:9CYk18f4xniF2HAEm2EL6g==,type:str]
-    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
-    version: 3.11.0
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -123,7 +52,6 @@ metadata:
     name: website-ing
     namespace: retake-web
     annotations:
-        #        kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: letsencrypt-retake
         nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
@@ -154,18 +82,3 @@ spec:
                         name: website-svc
                         port:
                             number: 3000
-sops:
-    age:
-        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHci9HMWQyaHVaV1BPbzBp
-            ZWNxckJrMzg0Zk5QNENvdmRPTnZtd09BRDNNCkhDeVhnTTI5bHlOaHZOUlBZbG41
-            YS9tNlVGckM2M2REY0p1Q2VUa3N6alUKLS0tIElRaEJzYWx0SzFJWGRrU0VuejYz
-            aUNRL3hrWWJ2ZWVVcDE2RklhZVFpeFUKQu2JCgrbB4q9EO6dc9xrP9u/PJxU1LDG
-            NI4T0WBEqxAahhcvVFeyZK244C/WZ9lGSCgtt4REGsE62I6SL+Hgsw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-01-10T19:55:08Z"
-    mac: ENC[AES256_GCM,data:KSTD5pAzjzQ0fZldIFKoe6rdZgs90yXtUlwbGatCNENwxiGLWPg/JX7VlvFrZn0Cgv4gCCekh/8xxYuZJY8kYLFLlrgjMKv0YVv5p6fkQi+tA3F83R8Xg3vCCVAG/uIVdgJhJTCMLoKueoFlpIgLaZepkj2YB7Y0DZzYjum4/gc=,iv:FFaFdgOoR3MKjLUaf3UP6fcFVKOGN3hhlrtVLkst8ns=,tag:9CYk18f4xniF2HAEm2EL6g==,type:str]
-    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username)$
-    version: 3.11.0
