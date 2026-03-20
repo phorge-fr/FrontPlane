@@ -7,14 +7,70 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBScTlhWG9MclBRMjlNc05j
-            RWYrd1ZiczVhcWF3MFl4Q2VJY3ErK1I2QVZvCjB5ajZSQWw5NUVFNUpXRmhHMUcw
-            dnN5djhJaWh4Um5WSGJhdVU2QkltdTQKLS0tIGRBb3pzSHEzQU9LU3o4SUNrcmlX
-            dngwZzdKNEtJV051Sm8zNnRJQVY2SUEKqgV7fMRkj7Qe/FWfkKcr9mZfmMK/9E43
-            mKSLTymHFVOkv2L40FUjtskw8bKLhXmA3x1GjgYA2ro5B2iAnTW3DQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYQ0hyMUhrN1FWZkRnTTd3
+            UHJDRTNROWNvYnZMT3ZEeFNHSTZHQzJrZFFNCkhabExOQ0txeDVPVzI5TTRTKzQy
+            cWJDazkwUXo1cXBETFp5eEpNTnVMZTQKLS0tIFIrUE1mNXBuTHc5VGlPR01DNTJt
+            d2tBZnNzMXk1bEZmM2RkMHZIMXlmWHMKs5uOAJlOiJEqNK4G4JoQelSjrxcJZdA7
+            NSgIN5J7BFu8WgatPtZyP8KjxN0u83SiHE5NDjJC4b8KS5eOoGN59w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-13T22:26:24Z"
-    mac: ENC[AES256_GCM,data:seA7Z7zcj7RHRrj9z5eUl886gMm114sO0p8cJoB76Fb71FJNwJy46micI7MJvFcF0oyu6VP04hMHc6k6PQhrIf1N9QXfezu1BHipZWME0nCj+xIZG9eGXfVTtYs0kGEjvucpdFK3AfhFW7bucMGVLCKw7BPQMaNTLjtOzHVjprs=,iv:bLtp+GJMHt/96lsqo3Cqa7wh5iUh/E3GUqZJglWfOTU=,tag:8YyK5kQ22kCxGm4/5DKNag==,type:str]
+    lastmodified: "2026-03-20T19:12:44Z"
+    mac: ENC[AES256_GCM,data:oh07O5FAtRsi+zihF7+EDxdB7fcSNMcjE3pjd6k4pIhxaI76AKddeXQo5tEbQ6rvtZoVOU1bFI7CSQHHcH50IttC536Lzz8EY0vYRKy7dIF77LkwGbFiTwmxkESlG6zs7FQBngc29lVyUdX3ueXn6DQiAYAOYzzJIp7bsdS7G4w=,iv:HyTlPrlgWQ5K2JD79+nFvrYFGxvqggMcadcvMoUA8TA=,tag:Kg4SY2CpPEpn/bnud1cchQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|MINIO_ACCESS_KEY_ID|MINIO_SECRET_ACCESS_KEY|MINIO_BUCKET)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: gitea-packages-pvc
+    namespace: gitea
+spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 200Gi
+    storageClassName: nfs-uncritical
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYQ0hyMUhrN1FWZkRnTTd3
+            UHJDRTNROWNvYnZMT3ZEeFNHSTZHQzJrZFFNCkhabExOQ0txeDVPVzI5TTRTKzQy
+            cWJDazkwUXo1cXBETFp5eEpNTnVMZTQKLS0tIFIrUE1mNXBuTHc5VGlPR01DNTJt
+            d2tBZnNzMXk1bEZmM2RkMHZIMXlmWHMKs5uOAJlOiJEqNK4G4JoQelSjrxcJZdA7
+            NSgIN5J7BFu8WgatPtZyP8KjxN0u83SiHE5NDjJC4b8KS5eOoGN59w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-20T19:12:44Z"
+    mac: ENC[AES256_GCM,data:oh07O5FAtRsi+zihF7+EDxdB7fcSNMcjE3pjd6k4pIhxaI76AKddeXQo5tEbQ6rvtZoVOU1bFI7CSQHHcH50IttC536Lzz8EY0vYRKy7dIF77LkwGbFiTwmxkESlG6zs7FQBngc29lVyUdX3ueXn6DQiAYAOYzzJIp7bsdS7G4w=,iv:HyTlPrlgWQ5K2JD79+nFvrYFGxvqggMcadcvMoUA8TA=,tag:Kg4SY2CpPEpn/bnud1cchQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|MINIO_ACCESS_KEY_ID|MINIO_SECRET_ACCESS_KEY|MINIO_BUCKET)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: gitea-lfs-pvc
+    namespace: gitea
+spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 100Gi
+    storageClassName: nfs-uncritical
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYQ0hyMUhrN1FWZkRnTTd3
+            UHJDRTNROWNvYnZMT3ZEeFNHSTZHQzJrZFFNCkhabExOQ0txeDVPVzI5TTRTKzQy
+            cWJDazkwUXo1cXBETFp5eEpNTnVMZTQKLS0tIFIrUE1mNXBuTHc5VGlPR01DNTJt
+            d2tBZnNzMXk1bEZmM2RkMHZIMXlmWHMKs5uOAJlOiJEqNK4G4JoQelSjrxcJZdA7
+            NSgIN5J7BFu8WgatPtZyP8KjxN0u83SiHE5NDjJC4b8KS5eOoGN59w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-20T19:12:44Z"
+    mac: ENC[AES256_GCM,data:oh07O5FAtRsi+zihF7+EDxdB7fcSNMcjE3pjd6k4pIhxaI76AKddeXQo5tEbQ6rvtZoVOU1bFI7CSQHHcH50IttC536Lzz8EY0vYRKy7dIF77LkwGbFiTwmxkESlG6zs7FQBngc29lVyUdX3ueXn6DQiAYAOYzzJIp7bsdS7G4w=,iv:HyTlPrlgWQ5K2JD79+nFvrYFGxvqggMcadcvMoUA8TA=,tag:Kg4SY2CpPEpn/bnud1cchQ==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|MINIO_ACCESS_KEY_ID|MINIO_SECRET_ACCESS_KEY|MINIO_BUCKET)$
     version: 3.11.0
 ---
@@ -32,14 +88,14 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBScTlhWG9MclBRMjlNc05j
-            RWYrd1ZiczVhcWF3MFl4Q2VJY3ErK1I2QVZvCjB5ajZSQWw5NUVFNUpXRmhHMUcw
-            dnN5djhJaWh4Um5WSGJhdVU2QkltdTQKLS0tIGRBb3pzSHEzQU9LU3o4SUNrcmlX
-            dngwZzdKNEtJV051Sm8zNnRJQVY2SUEKqgV7fMRkj7Qe/FWfkKcr9mZfmMK/9E43
-            mKSLTymHFVOkv2L40FUjtskw8bKLhXmA3x1GjgYA2ro5B2iAnTW3DQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYQ0hyMUhrN1FWZkRnTTd3
+            UHJDRTNROWNvYnZMT3ZEeFNHSTZHQzJrZFFNCkhabExOQ0txeDVPVzI5TTRTKzQy
+            cWJDazkwUXo1cXBETFp5eEpNTnVMZTQKLS0tIFIrUE1mNXBuTHc5VGlPR01DNTJt
+            d2tBZnNzMXk1bEZmM2RkMHZIMXlmWHMKs5uOAJlOiJEqNK4G4JoQelSjrxcJZdA7
+            NSgIN5J7BFu8WgatPtZyP8KjxN0u83SiHE5NDjJC4b8KS5eOoGN59w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-13T22:26:24Z"
-    mac: ENC[AES256_GCM,data:seA7Z7zcj7RHRrj9z5eUl886gMm114sO0p8cJoB76Fb71FJNwJy46micI7MJvFcF0oyu6VP04hMHc6k6PQhrIf1N9QXfezu1BHipZWME0nCj+xIZG9eGXfVTtYs0kGEjvucpdFK3AfhFW7bucMGVLCKw7BPQMaNTLjtOzHVjprs=,iv:bLtp+GJMHt/96lsqo3Cqa7wh5iUh/E3GUqZJglWfOTU=,tag:8YyK5kQ22kCxGm4/5DKNag==,type:str]
+    lastmodified: "2026-03-20T19:12:44Z"
+    mac: ENC[AES256_GCM,data:oh07O5FAtRsi+zihF7+EDxdB7fcSNMcjE3pjd6k4pIhxaI76AKddeXQo5tEbQ6rvtZoVOU1bFI7CSQHHcH50IttC536Lzz8EY0vYRKy7dIF77LkwGbFiTwmxkESlG6zs7FQBngc29lVyUdX3ueXn6DQiAYAOYzzJIp7bsdS7G4w=,iv:HyTlPrlgWQ5K2JD79+nFvrYFGxvqggMcadcvMoUA8TA=,tag:Kg4SY2CpPEpn/bnud1cchQ==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|MINIO_ACCESS_KEY_ID|MINIO_SECRET_ACCESS_KEY|MINIO_BUCKET)$
     version: 3.11.0
 ---
@@ -73,17 +129,35 @@ spec:
                   unzip -n /tmp/main.zip -d /tmp/
                   rsync -a --inplace --checksum /tmp/gitea-phorge-theme-main/ /data/gitea/
                   chown -R 1000:1000 /data/gitea
+                  chmod -R 777 /data/packages
+                  chmod -R 777 /data/lfs
               volumeMounts:
                 - name: data
                   mountPath: /data
+                - name: packages-volume
+                  mountPath: /data/packages
+                - name: lfs-volume
+                  mountPath: /data/lfs
         nodeSelector:
             node-role.kubernetes.io/worker: "true"
+        extraVolumes:
+            - name: packages-volume
+              persistentVolumeClaim:
+                claimName: gitea-packages-pvc
+            - name: lfs-volume
+              persistentVolumeClaim:
+                claimName: gitea-lfs-pvc
+        extraVolumeMounts:
+            - name: packages-volume
+              mountPath: /data/packages
+            - name: lfs-volume
+              mountPath: /data/lfs
         gitea:
             admin:
-                email: ENC[AES256_GCM,data:HEd7+UVEc8Qp8sf5vZ2CXQ==,iv:1jv3IyjnXiZ4amle/jUZ3f+9ajkBqQvHFIvx/+EDEh8=,tag:tSv/AAz+eO8vzhLBYHuaYg==,type:str]
-                password: ENC[AES256_GCM,data:5KOhrg3OPmS0uKa0iAduR9lmNdk=,iv:7o5QrimtZsYvcae8fYp4orIB4bhT2mNbmaEWcYhzZ3I=,tag:lNrczb5VIjFv5h6ApNe7aQ==,type:str]
+                email: ENC[AES256_GCM,data:nl2w+Is7JYS8nu7fm5JtWw==,iv:fkl52nlxzwLBQo1RHcxqNT1Y+LNegYVgz+GCcO+0PfI=,tag:UECGbBtytGmXXpk4CPvawg==,type:str]
+                password: ENC[AES256_GCM,data:wuixGu+0qV+iLDokV29Upd3HrAw=,iv:eSN0jMag2riXdcJHL6AJ1kyTpySJIf0EdOsegAylcvw=,tag:kjSeVId/Vad8NkfSAK4Fxw==,type:str]
                 passwordMode: keepUpdated
-                username: ENC[AES256_GCM,data:XAI/kCnHHUMwpEI=,iv:KhpATLsLYEqiEnDVSL78Cg3TA7DwSbVvG5ylXOvfbck=,tag:y3gWrOHlpIiVNoqF3oyWzA==,type:str]
+                username: ENC[AES256_GCM,data:25TU3W0j94eXMjk=,iv:F1TzFqKtS/4wGQgH7EJHe26w2z4WfbR7kI3AFNnF/zY=,tag:wklT3oPF2GOiTwJoOKJM3Q==,type:str]
             config:
                 APP_NAME: φorge
                 server:
@@ -91,22 +165,16 @@ spec:
                     SSH_PORT: 22
                     ROOT_URL: https://git.phorge.fr/
                 service:
-                    DISABLE_REGISTRATION: "false"
+                    DISABLE_REGISTRATION: "true"
                 ui:
                     THEMES: phorge-dark
                     DEFAULT_THEME: phorge-dark
                 repository:
                     ACCESS_CONTROL_ALLOW_ORIGIN: '*'
-                storage:
-                    STORAGE_TYPE: minio
-                    MINIO_ENDPOINT: 10.3.0.1:9000
-                    MINIO_ACCESS_KEY_ID: ENC[AES256_GCM,data:cmXbSntJeC8/90EImjTJi13fUMs=,iv:ExAdNvsZOkHD2pUgYBKo9S8KZUKQvPIsqxqG7z3HKEQ=,tag:wH7Gn4sLPM+qyc+EuPf5Vg==,type:str]
-                    MINIO_SECRET_ACCESS_KEY: ENC[AES256_GCM,data:eGv0HWsmb2qFWpu7E8X3SWTRmfgLmlvhko9mPvIXtjqPRWNzgE+0YA==,iv:4IOnE9l+y0pceA9EM1lJe7qFMVNb4dYp9fCRrITacsQ=,tag:Lx6SDX7bXqzlmMDkSEwyvg==,type:str]
-                    MINIO_BUCKET: ENC[AES256_GCM,data:1K5DfOA=,iv:3fbS5JJBfVWZiPR3w1Wfvqb8BJLHg1OtLQPQ6BnACCA=,tag:qhMJjeU6v/+z8fmjP58EYA==,type:str]
-                    MINIO_REGION: us-east-1
+                storage: {}
         ingress:
             annotations:
-                cert-manager.io/cluster-issuer: letsencrypt
+                # cert-manager.io/cluster-issuer: letsencrypt # temporarily disabled to use a self-signed certificate, as I hit rate limits with Let's Encrypt
                 nginx.ingress.kubernetes.io/proxy-body-size: 20480m
             className: nginx
             enabled: true
@@ -118,7 +186,7 @@ spec:
             tls:
                 - hosts:
                     - git.phorge.fr
-                  secretName: gitea
+                  secretName: gitea-tls
         persistence:
             accessModes:
                 - ReadWriteOnce
@@ -139,8 +207,8 @@ spec:
                 postgresql:
                     auth:
                         database: gitea
-                        password: ENC[AES256_GCM,data:guW3chk=,iv:sghl+kbK81phIg7jDY5N67z17NQ96dFGPeb2RcCmNDA=,tag:x02k50uVTCCpHcve7PlDgg==,type:str]
-                        username: ENC[AES256_GCM,data:1hwUXEo=,iv:TGTzcMja+qp8wde6RN+riodE2eXmkQO0JuIbZHfDwNY=,tag:0TeFkhboZFioHZcdi9KuWA==,type:str]
+                        password: ENC[AES256_GCM,data:F3vJ5xI=,iv:HMi07B+nxhzV9g4YsV+gyHIjdtlyyGgZ5eV4hWSZREY=,tag:yynGCwfMbX9wOfxUdG6ICQ==,type:str]
+                        username: ENC[AES256_GCM,data:+86FCKM=,iv:KLBuRKDZcnUbKbtNxMpiX5MdzY3VK9jiRMp/KuKbq0Y=,tag:LWawM1iDazfimesrXfEE+g==,type:str]
                     service:
                         ports:
                             postgresql: 5432
@@ -194,13 +262,13 @@ sops:
         - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBScTlhWG9MclBRMjlNc05j
-            RWYrd1ZiczVhcWF3MFl4Q2VJY3ErK1I2QVZvCjB5ajZSQWw5NUVFNUpXRmhHMUcw
-            dnN5djhJaWh4Um5WSGJhdVU2QkltdTQKLS0tIGRBb3pzSHEzQU9LU3o4SUNrcmlX
-            dngwZzdKNEtJV051Sm8zNnRJQVY2SUEKqgV7fMRkj7Qe/FWfkKcr9mZfmMK/9E43
-            mKSLTymHFVOkv2L40FUjtskw8bKLhXmA3x1GjgYA2ro5B2iAnTW3DQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYQ0hyMUhrN1FWZkRnTTd3
+            UHJDRTNROWNvYnZMT3ZEeFNHSTZHQzJrZFFNCkhabExOQ0txeDVPVzI5TTRTKzQy
+            cWJDazkwUXo1cXBETFp5eEpNTnVMZTQKLS0tIFIrUE1mNXBuTHc5VGlPR01DNTJt
+            d2tBZnNzMXk1bEZmM2RkMHZIMXlmWHMKs5uOAJlOiJEqNK4G4JoQelSjrxcJZdA7
+            NSgIN5J7BFu8WgatPtZyP8KjxN0u83SiHE5NDjJC4b8KS5eOoGN59w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-13T22:26:24Z"
-    mac: ENC[AES256_GCM,data:seA7Z7zcj7RHRrj9z5eUl886gMm114sO0p8cJoB76Fb71FJNwJy46micI7MJvFcF0oyu6VP04hMHc6k6PQhrIf1N9QXfezu1BHipZWME0nCj+xIZG9eGXfVTtYs0kGEjvucpdFK3AfhFW7bucMGVLCKw7BPQMaNTLjtOzHVjprs=,iv:bLtp+GJMHt/96lsqo3Cqa7wh5iUh/E3GUqZJglWfOTU=,tag:8YyK5kQ22kCxGm4/5DKNag==,type:str]
+    lastmodified: "2026-03-20T19:12:44Z"
+    mac: ENC[AES256_GCM,data:oh07O5FAtRsi+zihF7+EDxdB7fcSNMcjE3pjd6k4pIhxaI76AKddeXQo5tEbQ6rvtZoVOU1bFI7CSQHHcH50IttC536Lzz8EY0vYRKy7dIF77LkwGbFiTwmxkESlG6zs7FQBngc29lVyUdX3ueXn6DQiAYAOYzzJIp7bsdS7G4w=,iv:HyTlPrlgWQ5K2JD79+nFvrYFGxvqggMcadcvMoUA8TA=,tag:Kg4SY2CpPEpn/bnud1cchQ==,type:str]
     encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|MINIO_ACCESS_KEY_ID|MINIO_SECRET_ACCESS_KEY|MINIO_BUCKET)$
     version: 3.11.0
