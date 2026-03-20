@@ -5,3 +5,4 @@ resources:
   - users.yml
   - ip-pools.yml
   - l2announcementpolicy.yml
+  - sc-nfs-uncritical.yml
