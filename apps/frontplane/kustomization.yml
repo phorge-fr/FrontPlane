@@ -7,3 +7,4 @@ resources:
   - openfga.yml
   - gitea.yml
   - retake.yml
+  - grafana-dashboard.yml
