@@ -6,4 +6,4 @@ resources:
   - loki.yml
   - openfga.yml
   - gitea.yml
-  
+  - retake.fr
