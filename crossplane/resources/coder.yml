@@ -1,0 +1,98 @@
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Project
+metadata:
+    name: coder
+spec:
+    name: Coder
+    description: Project for Coder workspaces
+    config:
+        features.images: "true"
+        features.networks: "true"
+        features.networks.zones: "false"
+        features.profiles: "true"
+        features.storage.volumes: "true"
+        restricted: "true"
+        restricted.cluster.target: allow
+        restricted.networks.uplinks: UPLINK
+        restricted.snapshots: allow
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Network
+metadata:
+    name: coder-main
+spec:
+    name: Main
+    type: ovn
+    project: Coder
+    config:
+        ipv6.address: none
+        ipv6.nat: "false"
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Profile
+metadata:
+    name: 1vcpu-2gib-disk20gib
+spec:
+    name: 1vCPU-2iGB-disk20GiB
+    description: Profile with 1 vCPU, 2 GiB of RAM and a 20 GiB disk
+    devices:
+    - name: root
+      type: disk
+      properties:
+        size: 20GiB
+        pool: local
+        path: /
+    - name: eth0
+      type: nic
+      properties:
+        network: Main
+    config:
+        limits.cpu: "1"
+        limits.memory: 2GiB
+    project: Coder
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Profile
+metadata:
+    name: 2vcpu-4gib-disk20gib
+spec:
+    name: 2vCPU-4iGB-disk20GiB
+    description: Profile with 2 vCPU, 4 GiB of RAM and a 20 GiB disk
+    devices:
+    - name: root
+      type: disk
+      properties:
+        size: 20GiB
+        pool: local
+        path: /
+    - name: eth0
+      type: nic
+      properties:
+        network: Main
+    config:
+        limits.cpu: "2"
+        limits.memory: 4GiB
+    project: Coder
+---
+apiVersion: iaas.phorge.fr/v1alpha1
+kind: Profile
+metadata:
+    name: 4vcpu-8gib-disk60gib
+spec:
+    name: 4vCPU-8iGB-disk60GiB
+    description: Profile with 4 vCPU, 8 GiB of RAM and a 60 GiB disk
+    devices:
+    - name: root
+      type: disk
+      properties:
+        size: 60GiB
+        pool: local
+        path: /
+    - name: eth0
+      type: nic
+      properties:
+        network: Main
+    config:
+        limits.cpu: "4"
+        limits.memory: 8GiB
+    project: Coder
