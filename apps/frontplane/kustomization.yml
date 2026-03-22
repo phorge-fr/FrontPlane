@@ -8,3 +8,4 @@ resources:
   - gitea.yml
   - retake.yml
   - grafana-dashboard.yml
+  - coder.yml
