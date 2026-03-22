@@ -6,3 +6,4 @@ resources:
   - iaas-load_balancer.yml
   - iaas-instance.yml
   - iaas-forward.yml
+  - iaas-profile.yml
