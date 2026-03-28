@@ -9,4 +9,4 @@ resources:
   - retake.yml
   - grafana-dashboards.yml
   - coder.yml
-  - uptimekuma.yml
+  # - uptimekuma.yml
