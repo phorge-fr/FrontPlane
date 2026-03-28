@@ -36,7 +36,7 @@ kubectl label node strong-owl node-role.kubernetes.io/worker=true
 4. Install Cilium
 
 ```bash
-cilium install \
+cilium install --version 1.19.2 \
   --helm-set ipam.operator.clusterPoolIPv4PodCIDRList="10.244.0.0/16" \
   --helm-set envoy.enabled=false \
   --helm-set l2announcements.enabled=true \
