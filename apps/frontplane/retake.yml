@@ -53,9 +53,8 @@ metadata:
     namespace: retake-web
     annotations:
         cert-manager.io/cluster-issuer: letsencrypt-retake
-        nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
-    ingressClassName: nginx
+    ingressClassName: traefik
     tls:
         - hosts:
             - retake.fr
