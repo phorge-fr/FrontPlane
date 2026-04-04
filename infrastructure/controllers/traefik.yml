@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: traefik-public
+  name: traefik
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: traefik
-  namespace: traefik-public
+  namespace: traefik
 spec:
   interval: 24h
   url: https://traefik.github.io/charts
@@ -17,7 +17,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: traefik-public
-  namespace: traefik-public
+  namespace: traefik
 spec:
   interval: 30m
   chart:
@@ -27,9 +27,21 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-        namespace: traefik-public
+        namespace: traefik
       interval: 12h
   values:
+    fullnameOverride: traefik-public
+    ingressClass:
+      enabled: true
+      isDefaultClass: false
+      name: traefik-public
+    providers:
+      kubernetesIngress:
+        ingressClass: traefik-public
+    service:
+      type: LoadBalancer
+      annotations:
+        lbipam.cilium.io/ips: "10.0.0.10"
     ports:
       web:
         http:
@@ -38,21 +50,12 @@ spec:
               to: websecure
               scheme: https
               permanent: true
-    service:
-      type: LoadBalancer
-      annotations:
-        lbipam.cilium.io/ips: "10.0.0.10"
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: traefik-local
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: traefik-local
-  namespace: traefik-local
+  namespace: traefik
 spec:
   interval: 30m
   chart:
@@ -62,18 +65,22 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-        namespace: traefik-public
+        namespace: traefik
       interval: 12h
   values:
-    ports:
-      web:
-        http:
-          redirections:
-            entryPoint:
-              to: websecure
-              scheme: https
-              permanent: true
+    fullnameOverride: traefik-local
+    ingressClass:
+      enabled: true
+      isDefaultClass: false
+      name: traefik-local
+    providers:
+      kubernetesIngress:
+        ingressClass: traefik-local
     service:
       type: LoadBalancer
       annotations:
         lbipam.cilium.io/ips: "10.0.0.11"
+    ports:
+      web:
+        http:
+          redirections: {}
