@@ -3,3 +3,4 @@ run.sh
 age.agekey
 .ignore
 .env
+k0s_backup_*
