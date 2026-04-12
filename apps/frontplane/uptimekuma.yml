@@ -31,9 +31,11 @@ spec:
             labels:
                 app: uptime-kuma
         spec:
+            nodeSelector:
+                node-role.kubernetes.io/worker: "true"
             containers:
                 - name: uptime-kuma
-                  image: louislam/uptime-kuma:latest
+                  image: louislam/uptime-kuma:next
                   env:
                     - name: UPTIME_KUMA_PORT
                       value: "3001"
@@ -53,6 +55,7 @@ spec:
             accessModes:
                 - ReadWriteOnce
             volumeMode: Filesystem
+            storageClassName: longhorn
             resources:
                 requests:
                     storage: 1Gi
@@ -63,10 +66,9 @@ metadata:
     name: uptime-kuma-ing
     namespace: uptime-kuma
     annotations:
-        kubernetes.io/ingress.class: nginx
-        nginx.ingress.kubernetes.io/backend-protocol: HTTP
         cert-manager.io/cluster-issuer: letsencrypt
 spec:
+    ingressClassName: traefik-public
     tls:
         - hosts:
             - status.phorge.fr
