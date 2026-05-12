@@ -10,3 +10,5 @@ resources:
   - grafana-dashboards.yml
   - coder.yml
   - uptimekuma.yml
+  - litellm.yml
+  - phorge.yml
