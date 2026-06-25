@@ -1,8 +1,8 @@
-# FrontPlane
+# Planes
 
 ![Phorge logo](https://avatars.githubusercontent.com/u/187407936?s=200&v=4)
 
-FrontPlane is the main k8s cluster running @ Phorge !
+All the Kubernetes Planes running @ Phorge !
 
 ## Setup
 
@@ -16,24 +16,18 @@ requirements:
 1. Deploy cluster
 
 ```bash
+cd cluster/<cluster-name>
 k0sctl apply -c k0s-cluster.yml
 ```
 
 2. Get kubeconfig
 
 ```bash
+cd cluster/<cluster-name>
 k0sctl kubeconfig -c k0s-cluster.yml
 ```
 
-3. Label worker nodes
-
-```
-kubectl label node calm-rabbit node-role.kubernetes.io/worker=true
-kubectl label node silent-lion node-role.kubernetes.io/worker=true
-kubectl label node strong-owl node-role.kubernetes.io/worker=true
-```
-
-4. Install Cilium
+3. Install Cilium
 
 ```bash
 cilium install --version 1.19.2 \
@@ -49,7 +43,7 @@ cilium install --version 1.19.2 \
   --helm-set bpf.natMax=131072
 ```
 
-5. Create sops key for the cluster
+4. Create sops key for the cluster
 
 ```bash
 age-keygen -o age.agekey
@@ -61,8 +55,8 @@ kubectl create secret generic sops-age \
 rm age.agekey
 ```
 
-6. Bootstrap flux
+5. Bootstrap flux
 
 ```bash
-flux bootstrap github --owner=phorge-fr --repository=FrontPlane --branch=main --path=cluster/frontplane --token-auth=true
+flux bootstrap github --owner=phorge-fr --repository=Planes --branch=main --path=cluster/<cluster-name> --token-auth=true
 ```
