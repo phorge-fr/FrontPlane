@@ -14,3 +14,7 @@ spec:
   timeout: 5m0s
   dependsOn:
     - name: infra-base
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
