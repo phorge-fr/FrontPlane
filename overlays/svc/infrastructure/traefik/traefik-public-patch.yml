@@ -1,0 +1,10 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik-public
+  namespace: traefik
+spec:
+  values:
+    service:
+      annotations:
+        lbipam.cilium.io/ips: "10.1.0.11"
