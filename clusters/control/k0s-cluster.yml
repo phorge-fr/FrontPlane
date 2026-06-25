@@ -33,7 +33,7 @@ spec:
                   interface: eth0
           nodeLocalLoadBalancing:
             enabled: true
-            type: EnvoyProxy
+            type: Traefik
         storage:
           type: etcd
           etcd:
