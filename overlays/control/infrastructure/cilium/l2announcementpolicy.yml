@@ -4,5 +4,5 @@ metadata:
   name: default
 spec:
   interfaces:
-  - end0
+  - eth0
   loadBalancerIPs: true
