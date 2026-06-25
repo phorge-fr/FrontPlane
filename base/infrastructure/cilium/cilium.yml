@@ -1,0 +1,41 @@
+apiVersion: Namespace
+kind: Namespace
+metadata:
+  name: cilium
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cilium
+  namespace: cilium
+spec:
+  interval: 24h
+  url: https://helm.cilium.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: cilium
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: cilium
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: cilium
+      interval: 12h
+  values:
+    ipam.operator.clusterPoolIPv4PodCIDRList: "10.244.0.0/16"
+    envoy.enabled: false
+    l2announcements.enabled: true
+    bpf.masquerade: true
+    hubble.enabled: false
+    bpf.mapDynamicSizeRatio: 0.001
+    bpf.distributedLRU.enabled: false
+    bpf.ctTcpMax: 131072
+    bpf.ctAnyMax: 65536
+    bpf.natMax: 131072
