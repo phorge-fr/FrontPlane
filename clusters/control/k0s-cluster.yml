@@ -1,0 +1,78 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: control
+  user: phorge-admin
+spec:
+  k0s:
+    version: 1.36.1+k0s.0
+    config:
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: Cluster
+      metadata:
+        name: k0s
+      spec:
+        api:
+          k0sApiPort: 9443
+          port: 6443
+          sans:
+            - 10.1.0.4
+        network:
+          provider: custom
+          kubeProxy:
+            disabled: true
+          podCIDR: 10.244.0.0/16
+          serviceCIDR: 10.96.0.0/12
+          controlPlaneLoadBalancing:
+            enabled: true
+            type: Keepalived
+            keepalived:
+              vrrpInstances:
+                - virtualIPs: ["10.1.0.4/24"]
+                  authPass: "@Ph0rg3@"
+                  interface: eth0
+          nodeLocalLoadBalancing:
+            enabled: true
+            type: EnvoyProxy
+        storage:
+          type: etcd
+          etcd:
+            extraArgs:
+              listen-peer-urls: https://0.0.0.0:2380
+              listen-client-urls: https://0.0.0.0:2379
+        telemetry:
+          enabled: false
+  hosts:
+    - ssh:
+        address: 10.1.0.1
+        user: root
+        port: 22
+      role: controller+worker
+      installFlags:
+        - --disable-components=konnectivity-server
+        - --kubelet-extra-args=--image-gc-high-threshold=50 --image-gc-low-threshold=45
+      noTaints: true
+      privateAddress: 10.1.0.1
+      privateInterface: eth0
+    - ssh:
+        address: 10.1.0.2
+        user: root
+        port: 22
+      role: controller+worker
+      installFlags:
+        - --disable-components=konnectivity-server
+        - --kubelet-extra-args=--image-gc-high-threshold=50 --image-gc-low-threshold=45
+      noTaints: true
+      privateAddress: 10.1.0.2
+      privateInterface: eth0
+    - ssh:
+        address: 10.1.0.3
+        user: root
+        port: 22
+      role: controller+worker
+      installFlags:
+        - --disable-components=konnectivity-server
+        - --kubelet-extra-args=--image-gc-high-threshold=50 --image-gc-low-threshold=45
+      noTaints: true
+      privateAddress: 10.1.0.3
+      privateInterface: eth0
