@@ -9,8 +9,8 @@ GitOps repository for all Phorge Kubernetes clusters, managed with [FluxCD](http
 | Cluster | Role | Description |
 |---------|------|-------------|
 | [Control](clusters/control/setup/README.md) | Control Plane | Main entry point of the infrastructure. Handles user-facing resource provisioning (VMs, etc.), serves as the AI model gateway, and hosts the infrastructure frontend. |
-| SVC | Public Services | Exposes end-user services to the internet (Forgejo, Open WebUI, etc.). |
-| Core | Infrastructure Core | Hosts critical internal services: monitoring, logging, authentication & authorization. |
+| [SVC](clusters/svc/setup/README.md) | Public Services | Exposes end-user services to the internet (Forgejo, Open WebUI, etc.). |
+| [Core](clusters/core/setup/README.md) | Infrastructure Core | Hosts critical internal services: monitoring, logging, authentication & authorization. |
 
 ## Repository Structure
 
