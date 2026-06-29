@@ -4,5 +4,5 @@ resources:
   - ../../../base/controllers/traefik
 
 patches:
-  - path: traefik/traefik-local-patch.yml
-  - path: traefik/traefik-public-patch.yml
+  - path: traefik-local-patch.yml
+  - path: traefik-public-patch.yml
