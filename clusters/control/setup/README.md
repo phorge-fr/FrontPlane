@@ -65,7 +65,7 @@ rm age.agekey
 ```bash
 flux bootstrap github \
   --owner=phorge-fr \
-  --repository=Planes \
+  --repository=Hangar \
   --branch=main \
   --path=clusters/control \
   --token-auth=true
