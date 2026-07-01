@@ -5,15 +5,13 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./overlays/core/controllers
+  path: ./overlays/svc/controllers
   sourceRef:
     kind: GitRepository
     name: flux-system
   prune: true
   wait: true
   timeout: 5m0s
-  # dependsOn:
-  #   - name: base-configs
   decryption:
     provider: sops
     secretRef:

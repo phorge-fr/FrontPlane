@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./overlays/core/configs
+  path: ./overlays/svc/configs
   sourceRef:
     kind: GitRepository
     name: flux-system
