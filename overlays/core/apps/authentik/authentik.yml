@@ -1,0 +1,325 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: authentik
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhdVAvOVIyL1J4NHpDWU9P
+            cGdtTWNMSXA5ZXNMQlVtVW05dERxQ21Pa2w4ClRiTmthQWdTNWhadjE0K2ZyQUxV
+            VDl3L2J0Rkk3dUl4NGxEU1pJM3RnSm8KLS0tIEM5WExpMVVCWi8rV0t0WTdFNzF4
+            Q1ljTXNWZTVBVXVISEgyVDluVzJvTm8K7m98hpyokd4tWeKDZ9wh1Xta4+LR/J3E
+            k9lpOzlqvW9aCk1HguXb7K8jCeQwK41efXPxaOV9ShBkElgr/qwLCg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-03T23:44:49Z"
+    mac: ENC[AES256_GCM,data:62S9M3avR8gEXeRBISCZ5oGo8UFnaKJv2/aYe1nBeWob08QNmIYJSNbJG61uzb1DXBlUXukuqFjkK8ONKVg9CCBlLTeh4SKypT8ozD2ZKjufGgtoZihgyGrdukqDw81KnF7gPMlv0QMYM3bnPt9NWve3N601tp1cp5/ICQDiPew=,iv:XF9MMY9Xf+mYmpuQ38BZQGmzjJkeFefVF59/iu8+kh4=,tag:sx+bdhskpz1IFLqFOnXdoQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    interval: 1m0s
+    timeout: 1m0s
+    url: https://charts.goauthentik.io
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhdVAvOVIyL1J4NHpDWU9P
+            cGdtTWNMSXA5ZXNMQlVtVW05dERxQ21Pa2w4ClRiTmthQWdTNWhadjE0K2ZyQUxV
+            VDl3L2J0Rkk3dUl4NGxEU1pJM3RnSm8KLS0tIEM5WExpMVVCWi8rV0t0WTdFNzF4
+            Q1ljTXNWZTVBVXVISEgyVDluVzJvTm8K7m98hpyokd4tWeKDZ9wh1Xta4+LR/J3E
+            k9lpOzlqvW9aCk1HguXb7K8jCeQwK41efXPxaOV9ShBkElgr/qwLCg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-03T23:44:49Z"
+    mac: ENC[AES256_GCM,data:62S9M3avR8gEXeRBISCZ5oGo8UFnaKJv2/aYe1nBeWob08QNmIYJSNbJG61uzb1DXBlUXukuqFjkK8ONKVg9CCBlLTeh4SKypT8ozD2ZKjufGgtoZihgyGrdukqDw81KnF7gPMlv0QMYM3bnPt9NWve3N601tp1cp5/ICQDiPew=,iv:XF9MMY9Xf+mYmpuQ38BZQGmzjJkeFefVF59/iu8+kh4=,tag:sx+bdhskpz1IFLqFOnXdoQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    chart:
+        spec:
+            chart: authentik
+            sourceRef:
+                kind: HelmRepository
+                name: authentik
+            version: '*'
+    interval: 1m0s
+    timeout: 10m0s
+    values:
+        global:
+            security:
+                allowInsecureImages: true
+            image:
+                repository: ghcr.io/goauthentik/server
+                tag: ""
+            addPrometheusAnnotations: false
+            env: []
+            envFrom: []
+            volumeMounts: []
+            volumes: []
+        blueprints:
+            configMaps:
+                - authentik-grafana-oauth-blueprint
+        authentik:
+            enabled: true
+            log_level: info
+            secret_key: ENC[AES256_GCM,data:axuDrxDH9H7sgLF/TWCzo97VoFAEyEr8pqldmMnuRquYuyyicLz/TFPkegpgvOt0ohqcJ17sAp5T9BaSo/Wh/w==,iv:QDMRmYYAYzBcuy2WIqhGeMaMSkKijkgHMNv4IoDIIg0=,tag:VdtjsYk5ZTrHPGCOsYzEgA==,type:str]
+            existingSecret:
+                secretName: ""
+            events:
+                context_processors:
+                    geoip: /geoip/GeoLite2-City.mmdb
+                    asn: /geoip/GeoLite2-ASN.mmdb
+            web:
+                path: /
+            email:
+                host: ""
+                port: ENC[AES256_GCM,data:KJ2/,iv:HF/xEd84pKxK0/wgAh8ZvW17vjGKxwfuFR28kx5dn+o=,tag:VklYe6E+kxDVPt5iShKAnw==,type:int]
+                username: ""
+                password: ""
+                use_tls: ENC[AES256_GCM,data:I/B1A1I=,iv:M5z9WCXsdyjTIhGkGq7bkGnOTyaobtzdYJahPPV5KZc=,tag:AO5XOEfhzDIGKB5mTAFQgw==,type:bool]
+                use_ssl: ENC[AES256_GCM,data:1F3aU/M=,iv:/cowjM9I9LM9Lpz2svn3ozczWyBXrTnN2lvPMls/o5s=,tag:pJqHUPpaAd4zn9Mz7nk/tA==,type:bool]
+                timeout: ENC[AES256_GCM,data:n+U=,iv:fap7TRkYYVsLZjZt9NEBaZlCwTvEewB+K1SxauL2Jvo=,tag:iTvP7QUOK1HrfP34y8khYA==,type:int]
+                from: ""
+            outposts:
+                container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+            error_reporting:
+                enabled: false
+                environment: k8s
+                send_pii: false
+            postgresql:
+                host: '{{ .Release.Name }}-postgresql'
+                name: authentik
+                user: authentik
+                password: ENC[AES256_GCM,data:AS5ArtZXzeIMOTl/NiVO1qYqn+a5lfyzWM2Vecq1PQ==,iv:MpB1oWgXWz+UQDRYPOogFbDeSY4tDjDjvzx78W4OEE4=,tag:/76eJ2KtIK+wE3XrhO9ZDQ==,type:str]
+                port: 5432
+        server:
+            enabled: true
+            name: server
+            replicas: 1
+            env: []
+            envFrom: []
+            extraContainers: []
+            initContainers: []
+            volumeMounts: []
+            volumes: []
+            containerPorts:
+                http: 9000
+                https: 9443
+                metrics: 9300
+            hostNetwork: false
+            service:
+                annotations: {}
+                labels: {}
+                type: ClusterIP
+                nodePortHttp: 30080
+                nodePortHttps: 30443
+                servicePortHttp: 80
+                servicePortHttps: 443
+                servicePortHttpName: http
+                servicePortHttpsName: https
+                loadBalancerIP: ""
+                loadBalancerSourceRanges: []
+                externalIPs: []
+                externalTrafficPolicy: ""
+                sessionAffinity: ""
+                sessionAffinityConfig: {}
+            metrics:
+                enabled: false
+                service:
+                    type: ClusterIP
+                    clusterIP: ""
+                    annotations: {}
+                    labels: {}
+                    servicePort: 9300
+                    portName: metrics
+                serviceMonitor:
+                    enabled: false
+                    interval: 30s
+                    scrapeTimeout: 3s
+                    relabelings: []
+                    metricRelabelings: []
+                    selector: {}
+                    scheme: ""
+                    tlsConfig: {}
+                    namespace: ""
+                    labels: {}
+                    annotations: {}
+            ingress:
+                enabled: true
+                annotations:
+                    cert-manager.io/cluster-issuer: public-issuer
+                labels: {}
+                ingressClassName: traefik-public
+                hosts:
+                    - auth.phorge.fr
+                paths:
+                    - '{{ .Values.authentik.web.path }}'
+                pathType: Prefix
+                tls:
+                    - hosts:
+                        - auth.phorge.fr
+                      secretName: authentik-tls
+                https: false
+        worker:
+            enabled: true
+            name: worker
+            replicas: 1
+            env: []
+            envFrom: []
+            extraContainers: []
+            initContainers: []
+            volumeMounts: []
+            volumes: []
+            containerPorts:
+                http: 9000
+                metrics: 9300
+            metrics:
+                enabled: false
+                service:
+                    type: ClusterIP
+                    clusterIP: ""
+                    annotations: {}
+                    labels: {}
+                    servicePort: 9300
+                    portName: metrics
+                serviceMonitor:
+                    enabled: false
+                    interval: 30s
+                    scrapeTimeout: 3s
+                    relabelings: []
+                    metricRelabelings: []
+                    selector: {}
+                    scheme: ""
+                    tlsConfig: {}
+                    namespace: ""
+                    labels: {}
+                    annotations: {}
+        serviceAccount:
+            create: ENC[AES256_GCM,data:9nlq1Q==,iv:p0COUUqLqrnxdUMB363rcUfofkwnhA3rfGMYjzRgmzo=,tag:9t6kBaxuHV48s35kblgYiQ==,type:bool]
+            annotations: {}
+            serviceAccountSecret:
+                enabled: ENC[AES256_GCM,data:MXTWKdo=,iv:8AVnJXSUIoQ8uUHHzkYuGdWPtsBVeowmQuvR9tVHg5A=,tag:p65eEg4ALi/RA5zXLUpcyA==,type:bool]
+            fullnameOverride: ENC[AES256_GCM,data:InS+KIWSNoox,iv:JTebBca8aSI7UdQhHsm6uZy6ovxiRPtQpn08vnC5NFQ=,tag:sjdVExvqolYcRTBnQ1B1mQ==,type:str]
+        geoip:
+            enabled: false
+            editionIds: GeoLite2-City GeoLite2-ASN
+            updateInterval: 8
+            accountId: ""
+            licenseKey: ""
+            existingSecret:
+                secretName: ""
+                accountId: account_id
+                licenseKey: license_key
+            image:
+                repository: ghcr.io/maxmind/geoipupdate
+                tag: v7.1.1
+                digest: ""
+                pullPolicy: IfNotPresent
+            env: []
+            envFrom: []
+            volumeMounts: []
+            resources: {}
+            containerSecurityContext: {}
+        prometheus:
+            rules:
+                enabled: false
+                namespace: ""
+                selector: {}
+                labels: {}
+                annotations: {}
+                additionalRuleGroupAnnotations: {}
+        postgresql:
+            enabled: true
+            image:
+                registry: docker.io
+                repository: library/postgres
+                tag: 17.10-bookworm
+            auth:
+                username: ENC[AES256_GCM,data:Qwd3QGRrrrXU,iv:9hoSp9KnzzLiexiqWJ55MRhiffm5xnUQ2zirvfqc+S0=,tag:DxUfyXZiVZ1RYIHXsdw0yg==,type:str]
+                database: authentik
+                password: ENC[AES256_GCM,data:lxZfvO3lNnCh62/W3NGkGCAlPUqGaxmsJF0SOO00cg==,iv:tevyyhSZ+D/3lKI/cO9Hde3MwDxLBsWqK0OjXMd9/o0=,tag:VE6ui+CpjoTPlP9FRLjwKw==,type:str]
+            primary:
+                args:
+                    - -c
+                    - config_file=/bitnami/postgresql/conf/postgresql.conf
+                    - -c
+                    - hba_file=/bitnami/postgresql/conf/pg_hba.conf
+                configuration: |
+                    listen_addresses = '*'
+                    port = '5432'
+                    wal_level = 'replica'
+                    fsync = 'on'
+                    hot_standby = 'on'
+                    log_connections = 'false'
+                    log_disconnections = 'false'
+                    log_hostname = 'false'
+                    client_min_messages = 'error'
+                    include_dir = 'conf.d'
+                pgHbaConfiguration: |
+                    host     all             all             0.0.0.0/0               scram-sha-256
+                    host     all             all             ::/0                    scram-sha-256
+                    local    all             all                                     scram-sha-256
+                    host     all             all        127.0.0.1/32                 scram-sha-256
+                    host     all             all        ::1/128                      scram-sha-256
+                extendedConfiguration: |
+                    max_connections = 500
+                extraEnvVars:
+                    - name: POSTGRES_DB
+                      value: '{{ (include "postgresql.v1.database" .) }}'
+                resourcesPreset: none
+                containerSecurityContext:
+                    readOnlyRootFilesystem: true
+                extraVolumeMounts:
+                    - name: postgresql-socket
+                      mountPath: /var/run/postgresql
+                extraVolumes:
+                    - name: postgresql-socket
+                      emptyDir: {}
+            readReplicas:
+                resourcesPreset: none
+            backup:
+                resourcesPreset: none
+            passwordUpdateJob:
+                resourcesPreset: none
+            volumePermissions:
+                resourcesPreset: none
+                image:
+                    repository: debian
+                    tag: 13-slim
+            metrics:
+                resourcesPreset: none
+                image:
+                    repository: prometheuscommunity/postgres-exporter
+                    tag: v0.19.1
+        redis:
+            enabled: true
+        additionalObjects: []
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhdVAvOVIyL1J4NHpDWU9P
+            cGdtTWNMSXA5ZXNMQlVtVW05dERxQ21Pa2w4ClRiTmthQWdTNWhadjE0K2ZyQUxV
+            VDl3L2J0Rkk3dUl4NGxEU1pJM3RnSm8KLS0tIEM5WExpMVVCWi8rV0t0WTdFNzF4
+            Q1ljTXNWZTVBVXVISEgyVDluVzJvTm8K7m98hpyokd4tWeKDZ9wh1Xta4+LR/J3E
+            k9lpOzlqvW9aCk1HguXb7K8jCeQwK41efXPxaOV9ShBkElgr/qwLCg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-03T23:44:49Z"
+    mac: ENC[AES256_GCM,data:62S9M3avR8gEXeRBISCZ5oGo8UFnaKJv2/aYe1nBeWob08QNmIYJSNbJG61uzb1DXBlUXukuqFjkK8ONKVg9CCBlLTeh4SKypT8ozD2ZKjufGgtoZihgyGrdukqDw81KnF7gPMlv0QMYM3bnPt9NWve3N601tp1cp5/ICQDiPew=,iv:XF9MMY9Xf+mYmpuQ38BZQGmzjJkeFefVF59/iu8+kh4=,tag:sx+bdhskpz1IFLqFOnXdoQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0

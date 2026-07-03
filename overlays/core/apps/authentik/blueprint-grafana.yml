@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: authentik-grafana-oauth-blueprint
+    namespace: authentik
+data:
+    grafana-oauth.yaml: ENC[AES256_GCM,data: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,iv:f6WaAirwWt9HmtKwApaevXj2c6zWGBJJGSy3eyFRIss=,tag:KFbOfxS6t+g+lYSzS4lu1g==,type:str]
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHVVBKYytHY3ZDbmdRWVZR
+            MDFvOGQ3d1VjWURKbFVERkEzN1lYaGtDc1g4Cjh5T2V3Qklha3BINGdsS293d2I5
+            ZnBDNGZxYlNKYVYvQkhkOHV3Ym9ZcUUKLS0tIGZSSVJMV2R3ZXZ0ZkdJMWtubmNn
+            Wk9LMmVqT1BrYmIrM2tjdFFlVjFHdVEKMgjzLOaif0EFvBlYd8BpfSOQvXwKN4P+
+            kVTCgs8Lb59wV90bJFsyXuvU86youJqKxfS+jUYXxtEGLg1LzgSJqQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-03T23:44:53Z"
+    mac: ENC[AES256_GCM,data:zHJWtoW/7pBdIOUyY2qGAV5+q0/Qbm/uyQBv2Jdep+aYwfy7e1j5zMXpi4WTxHkeYhf0k6JpjY/DyAr93gy6XwwXEznew0EOGGv8Tu1GtgF2NOpj+u0zSqMmSglfqDzdnD2RqgRW9LuxcgM/mdkopO6WGfBi73dP/hYy30D5z4Y=,iv:F6i6R8vF1ai5Mowsfi1FFxjQowr5tqs/8m+B+zqUg0g=,tag:j+jp3jkyXU8JUbmqRuM3xA==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
