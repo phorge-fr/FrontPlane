@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: authentik-forgejo-oauth-blueprint
+    namespace: authentik
+data:
+    forgejo-oauth.yaml: ENC[AES256_GCM,data:5gnrBL/or/te/OwA+6Kk092l/ZC7U9Au8WDUjoE7qBlhoBVG5Qr1cFv0vClYABJMbSVb7Cc5reWFOIDGd6lKrBRZvwjn2Smp/rM3hTSPYUMczv5ZPwz2OKsiKOdNm6TYelJwWzpgpHvjDAtAB3ZJlQ+utb42P+wtUVEJ3PGhL4ziQvNhpN1fby21RG8tuEyuhucfNtJKm6NNldqErhn2OdydJ3UAPhOyVbzJ3vIWDgflt7OylHvIePDWX/mJDaLy5LuCcS7DUkO98ezyBxzj6AQeFtvNKH0UZpfZnTFvjOB+ZTa1YKQBBh6ZIAV4fv0Gib49hkskdJBj2bRJSghbSM4m6pELRFMo4UroA9MVEVYq1Ku17WHI3eXKwbQIDKuEtMtawqf3VBAtXlWm8dQfM9ee0GF6JIK/7YkeKSS31varflOgtaMsWQqSljCSSWUptqcyTiR1u4bFnpT6M75YzApwkhjtnE3+Qxj0ahD3KFNOX7jIr4MACuFoOwcFZcOEcIJnyk9SkQAdfS27jAkH/2ClmBRedp3gb6T0eZwM5A+G/jIpEuJoLtiHaurYZEmzm5Y4Ur8iJM53y3M4UTyDIsHDG+HBryLMJL9cH06v0oiiPvoFvQZx1QxSgCobqDWPwR3TbROdXnz7KZnzu9T5JXp1uxgXb+PQyidcs0EJ6acJlDhHSWLtTjTaCFZYr3iRfnke1CHv36ZHFzrHgFVsK7Pq2KuunNK34HIkvvSkNWl4ARXTlDpZUgIwSN8UIIhk0JX6ndPN6svjHbRx7+wWHT/xVEHAHoVXFPjtKQRnj0EhQ6yBcXq+Q2ELTaIPYErc/aec8VamA3VI2LN/XLlwjrZpt7eNt4Nk7qfNFAQO2uVmiGzR6Pu8n6Sdo6KN/YrVCS7m8p1YHy3uCPzyLjApIARXdH9iE25jfzuwgTB8HmxgID1dU1zPiKA+P9jqwpbLVQgzlMOpq960KzhkE/eGr46/zhgF1InO3JsCzN3igWrUvHPMUbn9jKzkD1HCazeF8C0NskgTaf+TVgU/ccZhXYciR293wMg3kdFQHbUM9jikHMxmKPQ56Kz/Rr7j4cwLoFwVq5HqrRhsmcMoWh57lJfb/0VvbIWabtFXadVVtjKYZ1/ERXyZNqySYuWgYjXLxTlJymhYOUhQ7iWoqH9d/NrHerz96bbPYFkqf975PpVGgzn3/P1xNa4eqa5YmORDLs6/ya+5VCVJPfRf5Q49YSICh6ms9KWnNyBBIwiJJPBlU6gFBw3Zrrt1EURPsV/HMdiTqI3zhzZ6NFW9RlpmeWUK4oWd/Uwa3cTWyVlesXHXJ3E1YRqJ0h5vJEnpCNJwQ06BBF1eCAVro2IsGHsAYSK/9lFB8AENAEt3xyPxaL9ubSMgxeOgSgs1Gkqpt7fEYDcituixk5Uh1Qy0w4IsosljLFJZfKAwZdbjtleeJpy8f31AEFMIsXUX/tzvarRNrtjyhzN2HKMJK2VCqy645S0j8Zdo/PtLrNSmtA08d/jiCHgRdaqClJmjkKdiwgFeeSbZXlB+4swVhPGa5ltmmu2/TkJW2yLI4800rSLOO8i9u64OhjRfYeRRrLaS4j/vAqV46ElZfkOIVuj9h7riqNDjxAAY8zZBGASAYHPYgB6MMbhtR8BL6S77A23ic201lzTnZK54GKEcl/xy+vcItCQ0B/Ao4y6wM2QnMcx3LEXU7lHf8ONf6fnnRVSdvjHZ+sV8X0PChPpN1+k4/2R7ON0CYkxThNosJeJ/v05ULCLyyiICf4e+lfqgpZsKtWQFnQ9du5KSdK0fww8wMXyQS2EibFRAu4ZWnN6Jno8N24jihsIrS/upQRgK6A0MvgiwHWMnMubCycRMBk2AyLindDmxqDFnkFFJMxgX314mv51P3Wo5sKzSVHVCPSJ6Q9PUJ8dnGEWZbARzCoA4s0Cuu6in0nbbr1bMKBcQq3BMuSocF5+GQQddYmt1p1VTf+e/DzSRjRQEfGJuZ9NgSs/CzO2ufeD5W7rdzq7mtfMDPigpt+R9LoaW9IDjRdJ3KVGgnao0SdLx2VRKCR/ovgeWx/1BmeUJoK3WOH0eB8aYOWd4Y2MF639RJKsyYy9w8ypnwehP89I8/0Q3C16HOIBasmoCLkd7vDwjTLeQ904uC/z3ij4Ra3W92tLJWpGR83ZvwZ64xDV3o+yyjr3x3OejuUzwH7EGNQh+XBlnLC9vLubhJMxp6QyEAqhbUKWNmQKVx0kbTtEV6sg2OQB8diBJV4WSI78f8J0aKp5UycZZyoIRskF1YKCTfmD0xYeyRnkgIGfZ,iv:tuxSIsMkKAU6Qm+j7AJt9sX+t8h6FXm6ewOv2YEFo7s=,tag:XlpHkhKu6Gc+eLUkrZ61Jg==,type:str]
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBZN3lLMzVhaGhGTENRYmR1
+            OGlxckdxQUpoekpMeHQ2Z2k2NW0wMy9YT2djCnJiby9ndUVJWEY2ZkJHSHFJVWIv
+            akZXWUtxZ3lvWHRXTHNpS3Q5bm5PZ1kKLS0tIGx2RitObFRKeDl6NHVHQjhPWnJu
+            OWhnQ3o4Tm1XTzRRUEtYNUswWUtGY1EK8HYR7gCpafGMXIndErMc12jIW++W6Z13
+            R9J1yWkolIEBdnTvMA8DN5s6VpDGTtu/1h20NfqFa2nG67Q6s6ijtg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-06T21:45:05Z"
+    mac: ENC[AES256_GCM,data:spRyL7/S6rwm/9sXZl2vFkhVyagxjXfqkzfPYUOz2ch5YJNYNePlxw03pufjmy3HFmwzJJLJuk2t9pFgLyPqRdT+BXu9+TyZWoR2kVZC+hNFeuJ9EW7ha6l0fIHFbDTjbGqQuXGxCU4epQCzJfX2KKqf8zPL8glmBdY7ShjXLcs=,iv:oXrymRCvXGzva74e+SFZZv6fCfku43IgC3R2R+i1anA=,tag:JfeM69hhHulMIBNzWSC3Dw==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
