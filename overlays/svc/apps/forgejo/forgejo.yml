@@ -1,0 +1,157 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: forgejo
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIL2VabllCTkFOcFkvaFdn
+            Y2RiMXVpblovUmo0ejhWaFNGWm16SlNtVkdJCjZOOFExY2x0MW9tNVlzVXlRV3Bt
+            dHNJL2lJSUNyZkdzVjJkajhOMWpzMWsKLS0tIGh0QUpram9CUGt1UTAzSmhKZzIv
+            enJCWGFBSlk2Tms5WlB6ZVZuMXhtd2cK4unJtBJ3+lD26BGxAio2Awnlf6cGWkQn
+            miyY1mYs7fEz6v6odluOmV7uMuetYN5wrrAuQ8pFmbhEMUiupb+Plg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-12T21:00:49Z"
+    mac: ENC[AES256_GCM,data:ELp+Z1omyI6oZte8r4E+YLqZVa/l3Xtrr5ddlCxz0eFpGOwsJqxIU+MrVhErrpLW4HixGqxi5R/SWPKT2WQFVTNU4yaHSSSLiAu8Uf3HIj+nJfOTS3Po6b9IXIDj8Hnar4cywRGUviISqwp3KCXTLxgV/6dWlwbEigNUcD960CQ=,iv:nWZ4xUxYfNNYAnU9BQv1JDwoOz7MZNMbZEO0Y5LpIx4=,tag:ZbqxFFuGZd2gcNL0blbuVQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: forgejo
+    namespace: forgejo
+spec:
+    interval: 1m0s
+    timeout: 1m0s
+    type: oci
+    url: oci://code.forgejo.org/forgejo-helm
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIL2VabllCTkFOcFkvaFdn
+            Y2RiMXVpblovUmo0ejhWaFNGWm16SlNtVkdJCjZOOFExY2x0MW9tNVlzVXlRV3Bt
+            dHNJL2lJSUNyZkdzVjJkajhOMWpzMWsKLS0tIGh0QUpram9CUGt1UTAzSmhKZzIv
+            enJCWGFBSlk2Tms5WlB6ZVZuMXhtd2cK4unJtBJ3+lD26BGxAio2Awnlf6cGWkQn
+            miyY1mYs7fEz6v6odluOmV7uMuetYN5wrrAuQ8pFmbhEMUiupb+Plg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-12T21:00:49Z"
+    mac: ENC[AES256_GCM,data:ELp+Z1omyI6oZte8r4E+YLqZVa/l3Xtrr5ddlCxz0eFpGOwsJqxIU+MrVhErrpLW4HixGqxi5R/SWPKT2WQFVTNU4yaHSSSLiAu8Uf3HIj+nJfOTS3Po6b9IXIDj8Hnar4cywRGUviISqwp3KCXTLxgV/6dWlwbEigNUcD960CQ=,iv:nWZ4xUxYfNNYAnU9BQv1JDwoOz7MZNMbZEO0Y5LpIx4=,tag:ZbqxFFuGZd2gcNL0blbuVQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: forgejo
+    namespace: forgejo
+spec:
+    chart:
+        spec:
+            chart: forgejo
+            sourceRef:
+                kind: HelmRepository
+                name: forgejo
+            version: '*'
+    interval: 1m0s
+    timeout: 10m0s
+    values:
+        securityContext:
+            fsGroupChangePolicy: OnRootMismatch
+        initPreScript: |
+            wget -O /tmp/main.zip https://github.com/phorge-fr/gitea-phorge-theme/archive/refs/heads/main.zip
+            unzip -n /tmp/main.zip -d /tmp/
+            mkdir -p /data/gitea
+            cp -r /tmp/gitea-phorge-theme-main/* /data/gitea/
+        gitea:
+            admin:
+                email: ENC[AES256_GCM,data:yv6jsCz6Qkc3s0m8OtsEKw==,iv:2de91itibs0+73tQp61dqTFsEMJ8/FaDi7SrOI4ZPoI=,tag:oV6atiZS5eG7tSIj5Ywx1w==,type:str]
+                password: ENC[AES256_GCM,data:031NsKlpbVMeK1dOcvAINru0vg8=,iv:dJcNTEIW+81ucKqOypG8C7CgfH/5IvhRTrUeVj2S73Q=,tag:j5JBWRJYGaHE2f0o60cM1g==,type:str]
+                passwordMode: keepUpdated
+                username: ENC[AES256_GCM,data:EtSLbJhLyjKFF1w=,iv:Y0F03kQqBPj0G5stHSpiKUuBjiITVIvcDtR2QkP9L0c=,tag:ZAKPRZbXE7nH3h6GeB6aKQ==,type:str]
+            config:
+                APP_NAME: φorge
+                server:
+                    SSH_LISTEN_PORT: 2222
+                    SSH_PORT: 22
+                    ROOT_URL: https://git.phorge.fr/
+                service:
+                    DISABLE_REGISTRATION: "true"
+                ui:
+                    THEMES: phorge-dark
+                    DEFAULT_THEME: phorge-dark
+                repository:
+                    ACCESS_CONTROL_ALLOW_ORIGIN: '*'
+                oauth2_client:
+                    ENABLE_AUTO_REGISTRATION: "true"
+                    USERNAME: nickname
+                storage: {}
+        ingress:
+            annotations:
+                cert-manager.io/cluster-issuer: public-issuer
+            className: traefik-public
+            enabled: true
+            hosts:
+                - host: git.phorge.fr
+                  paths:
+                    - path: /
+                      pathType: Prefix
+                      port: http
+            tls:
+                - hosts:
+                    - git.phorge.fr
+                  secretName: forgejo-tls
+        persistence:
+            accessModes:
+                - ReadWriteOnce
+            annotations:
+                helm.sh/resource-policy: keep
+            claimName: forgejo-shared-storage
+            create: true
+            enabled: true
+            labels: {}
+            mount: true
+            size: 10Gi
+            storageClass: nfs
+            subPath: null
+            volumeName: ""
+        service:
+            ssh:
+                annotations: {}
+                clusterIP: null
+                externalIPs: null
+                externalTrafficPolicy: null
+                hostPort: null
+                ipFamilies: null
+                ipFamilyPolicy: null
+                labels: {}
+                loadBalancerClass: null
+                loadBalancerIP: 10.3.0.13
+                loadBalancerSourceRanges: []
+                nodePort: null
+                port: 22
+                type: LoadBalancer
+        signing:
+            enabled: false
+            existingSecret: ""
+            gpgHome: /data/git/.gnupg
+            privateKey: ""
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIL2VabllCTkFOcFkvaFdn
+            Y2RiMXVpblovUmo0ejhWaFNGWm16SlNtVkdJCjZOOFExY2x0MW9tNVlzVXlRV3Bt
+            dHNJL2lJSUNyZkdzVjJkajhOMWpzMWsKLS0tIGh0QUpram9CUGt1UTAzSmhKZzIv
+            enJCWGFBSlk2Tms5WlB6ZVZuMXhtd2cK4unJtBJ3+lD26BGxAio2Awnlf6cGWkQn
+            miyY1mYs7fEz6v6odluOmV7uMuetYN5wrrAuQ8pFmbhEMUiupb+Plg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-12T21:00:49Z"
+    mac: ENC[AES256_GCM,data:ELp+Z1omyI6oZte8r4E+YLqZVa/l3Xtrr5ddlCxz0eFpGOwsJqxIU+MrVhErrpLW4HixGqxi5R/SWPKT2WQFVTNU4yaHSSSLiAu8Uf3HIj+nJfOTS3Po6b9IXIDj8Hnar4cywRGUviISqwp3KCXTLxgV/6dWlwbEigNUcD960CQ=,iv:nWZ4xUxYfNNYAnU9BQv1JDwoOz7MZNMbZEO0Y5LpIx4=,tag:ZbqxFFuGZd2gcNL0blbuVQ==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0

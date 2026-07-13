@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: forgejo-oidc-secret
+    namespace: forgejo
+type: Opaque
+stringData:
+    CLIENT_ID: ENC[AES256_GCM,data:101P0+40he+dTO34MjyBxb5E3jeI3223/FklchbAAdvHjHgb,iv:hgxgZ8jzSlLVOCOfV8bDgfRfQdNfGo/saSaO/Za8lAs=,tag:Oh+xJJJby0rhph0De5i7JA==,type:str]
+    CLIENT_SECRET: ENC[AES256_GCM,data:BsmtZhTKerOyI0GGm2vWqPnCHH4pCTSNI9KOGjbzi/sew0qbS/fkMzKITbZ33CqkY4P4TRKP9BIp,iv:RsG3+S2iqbAEvLyomJh7Lu4r7xpMEohX/jFzfP2GMhI=,tag:Qpkb2Vqhote0d90PWb+G0g==,type:str]
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArREZ3bXZBcy9JZlJldWps
+            Z0NyVTFCVVZRbEU3SWhMczN2L2FFd1Y1djFzClZDRGFDOGgwRDE0akt5T3pUWEJx
+            R2R1bnBMdGJOWjcyRjFLNm9YYUc4SHMKLS0tIGNDcHZaOUg1L3pNaFZUb0prMXZG
+            R3BFSFpyMm5yRlYrc1FFZXYyVVVJNGsKIMux+JwlQi+VBVYy6ao7f23VQSrciPM7
+            zI0UCjHET18Gsj8a6TpGDdUdb57jOaQ5/g7PvBKRyE8Wcq+prb1fMw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-12T21:01:02Z"
+    mac: ENC[AES256_GCM,data:bVQ51U+MXHSkI1cuzslUBXrtJr6NiJmYiMCD7ZVD1HwvIxZtzNQ2FWZg8CZmtt/nvUcgThnz411vFKJi5ZRRaj/UiAmgg7jsNfIhCEsOSFFXC/roJDEXbTNPhFpCinzXxOu+olVk4Yud+SlN1c+Cl/jzUprMLuXywlFp8t6n8Dc=,iv:MXdTBH928QPhYxmnqnENieW263yNRFSbx1TYdhZXZ2E=,tag:tIZecwiAopFHsJTUWaImvg==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: forgejo-oidc-setup
+    namespace: forgejo
+    annotations:
+        helm.sh/hook: post-install,post-upgrade
+        helm.sh/hook-weight: "1"
+        helm.sh/hook-delete-policy: hook-succeeded
+spec:
+    template:
+        spec:
+            containers:
+                - name: forgejo-oidc-setup
+                  image: code.forgejo.org/forgejo/forgejo:15.0.4-rootless
+                  command:
+                    - /bin/sh
+                    - -c
+                  args:
+                    - |
+                      forgejo admin auth add-oauth --config /data/gitea/conf/app.ini --name "Phorge" --provider "openidConnect" --key "$CLIENT_ID" --secret "$CLIENT_SECRET" --auto-discover-url "https://auth.phorge.fr/application/o/forgejo/.well-known/openid-configuration" --icon-url "https://avatars.githubusercontent.com/u/187407936?s=200&v=4" --scopes "email profile openid forgejo" --group-claim-name "forgejo" --admin-group "admin" --restricted-group "restricted"
+                  envFrom:
+                    - secretRef:
+                        name: forgejo-oidc-secret
+                  volumeMounts:
+                    - name: forgejo-data
+                      mountPath: /data
+            initContainers:
+                - name: wait-for-forgejo
+                  image: curlimages/curl:latest
+                  command:
+                    - /bin/sh
+                    - -c
+                    - |
+                      echo "Waiting for Forgejo to be ready..."
+                      for i in $(seq 1 60); do
+                        if curl -s -o /dev/null -w "%{http_code}" http://forgejo-http.forgejo.svc.cluster.local:3000 | grep -q "200"; then
+                          echo "Forgejo is ready!"
+                          exit 0
+                        fi
+                        echo "Attempt $i: waiting..."
+                        sleep 5
+                      done
+                      echo "Timeout: Forgejo not ready after 5 minutes"
+                      exit 1
+            restartPolicy: Never
+            volumes:
+                - name: forgejo-data
+                  persistentVolumeClaim:
+                    claimName: forgejo-shared-storage
+    backoffLimit: 1
+sops:
+    age:
+        - recipient: age1ae6yk6xtlt8h40272xqxegz3t3zpvvuxj0jwy489xs6e34k0y9xsvpmt03
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArREZ3bXZBcy9JZlJldWps
+            Z0NyVTFCVVZRbEU3SWhMczN2L2FFd1Y1djFzClZDRGFDOGgwRDE0akt5T3pUWEJx
+            R2R1bnBMdGJOWjcyRjFLNm9YYUc4SHMKLS0tIGNDcHZaOUg1L3pNaFZUb0prMXZG
+            R3BFSFpyMm5yRlYrc1FFZXYyVVVJNGsKIMux+JwlQi+VBVYy6ao7f23VQSrciPM7
+            zI0UCjHET18Gsj8a6TpGDdUdb57jOaQ5/g7PvBKRyE8Wcq+prb1fMw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-07-12T21:01:02Z"
+    mac: ENC[AES256_GCM,data:bVQ51U+MXHSkI1cuzslUBXrtJr6NiJmYiMCD7ZVD1HwvIxZtzNQ2FWZg8CZmtt/nvUcgThnz411vFKJi5ZRRaj/UiAmgg7jsNfIhCEsOSFFXC/roJDEXbTNPhFpCinzXxOu+olVk4Yud+SlN1c+Cl/jzUprMLuXywlFp8t6n8Dc=,iv:MXdTBH928QPhYxmnqnENieW263yNRFSbx1TYdhZXZ2E=,tag:tIZecwiAopFHsJTUWaImvg==,type:str]
+    encrypted_regex: ^(email|password|secret_key|data|stringData|ca|crt|key|id|secret|token|aggregatorCA|serviceAccount|bootstraptoken|secretboxencryptionsecret|secretboxEncryptionSecret|clientSecret|clientId|clientID|external-dns.alpha.kubernetes.io/target|adminPassword|metrics.crt|metrics.key|ca.crt|uri|postgresPassword|preshared|username|cloud-init.user-data|access_key|secret_key)$
+    version: 3.11.0
